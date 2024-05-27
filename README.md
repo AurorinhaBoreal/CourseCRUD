@@ -41,8 +41,8 @@
     STUDENT
 
 ## Minimum Viable Product
-- 🚧 Container Docker
-- 🚧 Conectar Banco
+- ✅ Container Docker
+- ✅ Conectar Banco
 - 🚧 Entidade Professor
 - 🚧 Entidade Aluno
 - 🚧 Entidade Curso
@@ -74,9 +74,9 @@
 - 🚧 Paginação de Curso
  
 US's - MVP
-- 🚧 [US001] Configurar Ambiente
-    - 🚧 [US001-1] Criar Container Docker
-    - 🚧 [US001-2] Conectar Banco
+- ✅ [US001] Configurar Ambiente
+    - ✅ [US001-1] Criar Container Docker
+    - ✅ [US001-2] Conectar Banco
 - 🚧 [US002] Criar Entidades
     - 🚧 [US002-1] Entidade Aluno
     - 🚧 [US002-2] Entidade Professor
