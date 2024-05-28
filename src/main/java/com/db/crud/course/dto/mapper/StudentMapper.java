@@ -11,6 +11,7 @@ public interface StudentMapper {
     
     static StudentResponse studentToDto(Student student) {
         return StudentResponse.builder()
+            .enrollmentId(student.getEnrollmentId())
             .firstName(student.getFirstName())
             .lastName(student.getLastName())
             .grade(student.getGrade())
@@ -24,6 +25,7 @@ public interface StudentMapper {
 
     static Student dtoToStudent(StudentRequest studentDTO) {
         return Student.builder()
+            .enrollmentId(studentDTO.enrollmentId())
             .firstName(studentDTO.firstName())
             .lastName(studentDTO.lastName())
             .grade(studentDTO.grade())

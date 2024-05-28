@@ -9,6 +9,9 @@ import jakarta.validation.constraints.NotNull;
 
 public record StudentRequest(
 
+    @NotBlank(message = "Inform a enrollment Id!")
+    Long enrollmentId,
+    
     @NotBlank(message = "First name cannot be empty!")
     String firstName,
 

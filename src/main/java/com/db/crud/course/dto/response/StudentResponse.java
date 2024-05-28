@@ -9,6 +9,7 @@ import lombok.Builder;
 
 @Builder
 public record StudentResponse(
+    Long enrollmentId,
     String firstName,
     String lastName,
     Integer grade,
