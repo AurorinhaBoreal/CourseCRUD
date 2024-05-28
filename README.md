@@ -43,11 +43,11 @@
 ## Minimum Viable Product
 - ✅ Container Docker
 - ✅ Conectar Banco
-- 🚧 Entidade Professor
-- 🚧 Entidade Aluno
-- 🚧 Entidade Curso
-- 🚧 Relacionar Curso e Professor (n:1)
-- 🚧 Relacionar Curso e Aluno (n:n)
+- ✅ Entidade Professor
+- ✅ Entidade Aluno
+- ✅ Entidade Curso
+- ✅ Relacionar Curso e Professor (n:1)
+- ✅ Relacionar Curso e Aluno (n:n)
 - 🚧 Listar Professor, Aluno e Curso
 - 🚧 Buscar Aluno no Curso
 - 🚧 Criar Aluno
@@ -77,10 +77,10 @@ US's - MVP
 - ✅ [US001] Configurar Ambiente
     - ✅ [US001-1] Criar Container Docker
     - ✅ [US001-2] Conectar Banco
-- 🚧 [US002] Criar Entidades
-    - 🚧 [US002-1] Entidade Aluno
-    - 🚧 [US002-2] Entidade Professor
-    - 🚧 [US002-3] Entidade Curso
+- ✅ [US002] Criar Entidades
+    - ✅ [US002-1] Entidade Aluno
+    - ✅ [US002-2] Entidade Professor
+    - ✅ [US002-3] Entidade Curso
 - 🚧 [US003] Como aluno, quero me registrar
     - 🚧 [US003-1] Criar Aluno
     - 🚧 [US003-2] Listar Alunos
