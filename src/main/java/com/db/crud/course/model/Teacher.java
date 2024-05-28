@@ -54,7 +54,7 @@ public class Teacher {
     // Um professor para varios cursos - ONE TO MANY
     // Por essa Entidade ter o "mappedBy", ela vai ser a filha da relação
     // Ou seja, quem vai gerenciar a chave estrangeira será a Entidade curso
-    @OneToMany(mappedBy = "teacherId", cascade = CascadeType.DETACH, orphanRemoval = true)
+    @OneToMany(mappedBy = "teacherId")
     @Valid
     private List<Course> courses = new ArrayList<>();
 }
