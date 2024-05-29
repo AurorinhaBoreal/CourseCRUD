@@ -49,7 +49,7 @@ public class Student {
     private LocalDate birthDate;
 
     @Column(length = 11, nullable = false)
-    private String Cpf;
+    private String cpf;
 
     @Column(name = "parent_name")
     private String parentName;

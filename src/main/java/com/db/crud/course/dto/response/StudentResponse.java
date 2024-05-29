@@ -14,7 +14,7 @@ public record StudentResponse(
     String lastName,
     Integer grade,
     LocalDate birthDate,
-    String Cpf,
+    String cpf,
     String parentName,
     String parentNumber,
     List<Course> courses

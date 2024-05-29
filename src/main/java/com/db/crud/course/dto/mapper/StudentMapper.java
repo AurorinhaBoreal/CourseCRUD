@@ -16,7 +16,7 @@ public interface StudentMapper {
             .lastName(student.getLastName())
             .grade(student.getGrade())
             .birthDate(student.getBirthDate())
-            .Cpf(student.getCpf())
+            .cpf(student.getCpf())
             .parentName(student.getParentName())
             .parentNumber(student.getParentNumber())
             .courses(student.getCourses())
@@ -30,7 +30,7 @@ public interface StudentMapper {
             .lastName(studentDTO.lastName())
             .grade(studentDTO.grade())
             .birthDate(studentDTO.birthDate())
-            .Cpf(studentDTO.Cpf())
+            .cpf(studentDTO.cpf())
             .parentName(studentDTO.parentName())
             .parentNumber(studentDTO.parentNumber())
             .build();

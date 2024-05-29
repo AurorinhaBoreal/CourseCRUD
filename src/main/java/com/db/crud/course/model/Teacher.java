@@ -49,7 +49,7 @@ public class Teacher {
     private String phoneNumber;
 
     @Column(length = 11, nullable = false)
-    private String Cpf;
+    private String cpf;
 
     // Um professor para varios cursos - ONE TO MANY
     // Por essa Entidade ter o "mappedBy", ela vai ser a filha da relação

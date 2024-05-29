@@ -26,7 +26,7 @@ public record StudentRequest(
 
     @NotBlank(message = "CPF must be informed!")
     @CPF(message = "Invalid CPF!")
-    String Cpf,
+    String cpf,
 
     @NotBlank(message = "Must be informed a parent!")
     String parentName,
