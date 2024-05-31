@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.db.crud.course.dto.mapper.StudentMapper;
 import com.db.crud.course.dto.request.StudentRequest;
 import com.db.crud.course.dto.response.StudentResponse;
-import com.db.crud.course.model.Student;
 import com.db.crud.course.service.StudentService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
