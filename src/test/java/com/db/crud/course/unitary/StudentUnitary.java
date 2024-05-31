@@ -96,6 +96,27 @@ public class StudentUnitary {
     }
 
     @Test
+    @DisplayName("Happy Test: Student Service Delete Student")
+    void shouldDeleteStudent() {
+        when(studentRepository.findByEnrollmentId(anyLong())).thenReturn(Optional.of(studentEntityValid));
+        when(studentRepository.findByCpf(anyString())).thenReturn(Optional.of(studentEntityValid));
+     
+        Long deleted = studentService.delete(12L, "1111111112");
+
+        assertEquals(12, deleted);
+    }
+
+    // @Test
+    // @DisplayName("Sad Test:")
+    // void shouldNotDeleteStudent() {
+    // ... thrown = assertThrows(....class, () -> {
+    // // TODO: Test Logic
+    // });
+    
+    // assertEquals(, thrown.getMessage());
+    // }
+
+    @Test
     @DisplayName("Happy Test: Student Repository findByCpf")
     void shouldFindByCpf() {
         when(studentRepository.findByCpf(studentDTOValid.cpf())).thenReturn(Optional.of(studentEntityValid));
