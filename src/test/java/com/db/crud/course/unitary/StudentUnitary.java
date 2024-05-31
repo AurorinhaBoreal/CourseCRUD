@@ -27,8 +27,8 @@ import com.db.crud.course.dto.response.StudentResponse;
 import com.db.crud.course.fixture.StudentFixture;
 import com.db.crud.course.model.Student;
 import com.db.crud.course.repository.StudentRepository;
-import com.db.crud.course.service.StudentService;
-import com.db.crud.course.service.StudentServiceImpl;
+import com.db.crud.course.service.student.StudentService;
+import com.db.crud.course.service.student.StudentServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class StudentUnitary {

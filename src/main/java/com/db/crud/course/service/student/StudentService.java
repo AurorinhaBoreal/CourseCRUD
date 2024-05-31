@@ -1,4 +1,4 @@
-package com.db.crud.course.service;
+package com.db.crud.course.service.student;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

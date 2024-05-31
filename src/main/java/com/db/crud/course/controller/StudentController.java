@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.db.crud.course.dto.request.StudentRequest;
 import com.db.crud.course.dto.response.StudentResponse;
-import com.db.crud.course.service.StudentService;
+import com.db.crud.course.service.student.StudentService;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
