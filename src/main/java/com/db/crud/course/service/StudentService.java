@@ -17,7 +17,7 @@ public interface StudentService {
     
     public StudentResponse update(StudentRequest studentRequestDTO, Long enrollmentId);
 
-    public Long delete(Long enrollmentId);
+    public Long delete(Long enrollmentId, String cpf);
 
     public Student findStudent(Long enrollmentId);
 

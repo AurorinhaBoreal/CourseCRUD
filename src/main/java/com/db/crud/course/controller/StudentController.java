@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,5 +45,11 @@ public class StudentController {
     public ResponseEntity<StudentResponse> update(@PathVariable Long enrollmentId, @RequestBody StudentRequest updateStudent) {
         var body = studentService.update(updateStudent, enrollmentId);
         return ResponseEntity.status(HttpStatus.OK).body(body);
+    }
+
+    @DeleteMapping("/delete/{enrollmentId}-{cpf}")
+    public ResponseEntity<Void> delete(@PathVariable Long enrollmentId, @PathVariable String cpf) {
+        studentService.delete(enrollmentId, cpf);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

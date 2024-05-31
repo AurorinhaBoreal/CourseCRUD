@@ -55,12 +55,22 @@ public class StudentServiceImpl implements StudentService {
         return StudentMapper.studentToDto(originalStudent);
     }
 
+    // TODO: Create Customized Exceptions
     @Override
-    public Long delete(Long enrollmentId) {
+    public Long delete(Long enrollmentId, String cpf) {
+        Student studentOne = findStudent(enrollmentId);
+        Student studentTwo = studentRepository.findByCpf(cpf).get();
 
-        return enrollmentId;
+        if (studentOne == studentTwo) {
+            studentRepository.delete(studentOne);
+            return enrollmentId;
+        } else {
+            throw new RuntimeException("The data doesn't match!");
+        }
+        
     }
 
+    // TODO: Create Customized Exceptions
     @Override
     public Student findStudent(Long enrollmentId) {
         Student studentFounded = studentRepository.findByEnrollmentId(enrollmentId).get();
@@ -70,6 +80,7 @@ public class StudentServiceImpl implements StudentService {
 
         return studentFounded;
     }
+
     // TODO: Create Customized Exceptions
     @Override
     public boolean verifyCPF(String cpf) {
