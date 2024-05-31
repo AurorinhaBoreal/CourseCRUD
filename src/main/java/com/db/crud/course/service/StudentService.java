@@ -10,7 +10,7 @@ import com.db.crud.course.dto.response.StudentResponse;
 @Service
 public interface StudentService {
 
-    public Page<Object> listar(Pageable pageable);
+    public Page<Object> list(Pageable pageable);
 
     public StudentResponse create(StudentRequest studentRequestDTO);
 
