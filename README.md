@@ -50,9 +50,9 @@
 - ✅ Relacionar Curso e Aluno (n:n)
 - 🚧 Listar Professor, Aluno e Curso
 - 🚧 Buscar Aluno no Curso
-- 🚧 Criar Aluno
-- 🚧 Atualizar Aluno
-- 🚧 Excluir Aluno
+- ✅ Criar Aluno
+- ✅ Atualizar Aluno
+- ✅ Excluir Aluno
 - 🚧 Matricular Aluno
 - 🚧 Desmatricular Aluno
 - 🚧 Criar Professor
@@ -81,11 +81,11 @@ US's - MVP
     - ✅ [US002-1] Entidade Aluno
     - ✅ [US002-2] Entidade Professor
     - ✅ [US002-3] Entidade Curso
-- 🚧 [US003] Como aluno, quero me registrar
-    - 🚧 [US003-1] Criar Aluno
-    - 🚧 [US003-2] Listar Alunos
-    - 🚧 [US003-3] Atualizar Aluno
-    - 🚧 [US003-4] Remover Aluno
+- ✅ [US003] Como aluno, quero me registrar
+    - ✅ [US003-1] Criar Aluno
+    - ✅ [US003-2] Listar Alunos
+    - ✅ [US003-3] Atualizar Aluno
+    - ✅ [US003-4] Remover Aluno
 - 🚧 [US004] Como professor, quero me registrar
     - 🚧 [US004-1] Criar Professor
     - 🚧 [US004-2] Listar Professores
@@ -117,6 +117,6 @@ US's - EXTRA
 
 
     STUDENT
-
+    
 
     COURSE
