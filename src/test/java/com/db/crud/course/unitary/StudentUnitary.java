@@ -102,17 +102,7 @@ public class StudentUnitary {
 
         assertEquals(12, deleted);
     }
-
-    // @Test
-    // @DisplayName("Sad Test:")
-    // void shouldNotDeleteStudent() {
-    // ... thrown = assertThrows(....class, () -> {
-    // // TODO: Test Logic
-    // });
     
-    // assertEquals(, thrown.getMessage());
-    // }
-
     @Test
     @DisplayName("Happy Test: Student Repository findByCpf")
     void shouldFindByCpf() {
@@ -123,28 +113,6 @@ public class StudentUnitary {
         assertNotNull(foundStudent);
     }
 
-    // @Test
-    // @DisplayName("Sad Test: Student Repository findByCpf")
-    // void shouldNotFindByCpf() {
-    // ... thrown = assertThrows(....class, () -> {
-    //     // TODO: Test Logic
-    // });
-    
-    // assertEquals(, thrown.getMessage());
-    // }
-
-    // @Test
-	// @DisplayName("Sad Test: Should thrown DuplicateCpfException in create")
-	// void thrownDuplicateCpfException() {
-	// 	DuplicateCpfException thrown = assertThrows(DuplicateCpfException.class, () -> {
-	// 		when(personRepository.existsByCpf(anyString())).thenReturn(true);
-
-	// 		personService.create(personDTOValid);
-	// 	});
-	
-	// 	assertEquals("Already exists a person with this cpf!", thrown.getMessage());
-	// }
-
     @Test
     @DisplayName("Happy Test: Student Service Verify CPF")
     void verifyValidCpf() {
@@ -154,16 +122,6 @@ public class StudentUnitary {
 
         assertFalse(verification);
     }
-
-    // @Test
-    // @DisplayName("Sad Test: Student Service Verify CPF")
-    // void verifyInvalidCpf() {
-    // ... thrown = assertThrows(....class, () -> {
-    // // TODO: Test Logic
-    // });
-    
-    // assertEquals(, thrown.getMessage());
-    // }
 
     @Test
     @DisplayName("Happy Test: Student Service Find Student")
