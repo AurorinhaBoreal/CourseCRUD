@@ -36,6 +36,9 @@ public class Course {
     @Column(name = "id_course")
     private Long Id;
 
+    @Column(name = "course_id", unique = true, nullable = false)
+    private Long courseId;
+
     // Indica o ID do professor que da aula nesse curso, fechando a relação na Entidade Teacher
     // Muitos Cursos podem ter um (o mesmo) professor
     @ManyToOne(cascade = CascadeType.PERSIST)
