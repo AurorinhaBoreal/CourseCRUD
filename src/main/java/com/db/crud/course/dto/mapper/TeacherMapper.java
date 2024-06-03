@@ -31,4 +31,14 @@ public interface TeacherMapper {
             .cpf(teacherDTO.cpf())
             .build();
     }
+
+    static Teacher updateEntity(Teacher originalTeacher, TeacherRequest updateTeacher) {
+
+        originalTeacher.setFirstName(updateTeacher.firstName());
+        originalTeacher.setLastName(updateTeacher.lastName());
+        originalTeacher.setBirthDate(updateTeacher.birthDate());
+        originalTeacher.setPhoneNumber(updateTeacher.phoneNumber());
+        
+        return originalTeacher;
+    }
 }

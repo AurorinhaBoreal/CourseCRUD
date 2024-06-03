@@ -45,11 +45,7 @@ public class TeacherServiceImpl implements TeacherService {
     public TeacherResponse update(TeacherRequest teacherRequestDTO, Long teacherId) {
         Teacher originalTeacher = findTeacher(teacherId);
 
-        originalTeacher.setFirstName(teacherRequestDTO.firstName());
-        originalTeacher.setLastName(teacherRequestDTO.lastName());
-        originalTeacher.setBirthDate(teacherRequestDTO.birthDate());
-        originalTeacher.setPhoneNumber(teacherRequestDTO.phoneNumber());
-
+        TeacherMapper.updateEntity(originalTeacher, teacherRequestDTO);
         teacherRepository.save(originalTeacher);
 
         return TeacherMapper.teacherToDto(originalTeacher);
@@ -69,7 +65,6 @@ public class TeacherServiceImpl implements TeacherService {
         
     }
 
-    // TODO: Create Customized Exceptions
     @Override
     public Teacher findTeacher(Long teacherId) {
         Teacher teacherFounded = teacherRepository.findByTeacherId(teacherId).get();
@@ -77,7 +72,6 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherFounded;
     }
 
-    // TODO: Create Customized Exceptions
     @Override
     public boolean verifyCPF(String cpf) {
         if (teacherRepository.existsByCpf(cpf)) {
