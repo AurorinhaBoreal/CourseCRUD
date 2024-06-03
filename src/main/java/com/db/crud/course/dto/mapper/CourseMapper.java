@@ -3,11 +3,8 @@ package com.db.crud.course.dto.mapper;
 import org.mapstruct.Mapper;
 
 import com.db.crud.course.dto.request.CourseRequest;
-import com.db.crud.course.dto.request.StudentRequest;
 import com.db.crud.course.dto.response.CourseResponse;
-import com.db.crud.course.dto.response.StudentResponse;
 import com.db.crud.course.model.Course;
-import com.db.crud.course.model.Student;
 
 @Mapper(componentModel = "spring")
 public class CourseMapper {
@@ -29,5 +26,13 @@ public class CourseMapper {
             .name(courseDTO.name())
             .semesters(courseDTO.semesters())
             .build();
+    }
+
+    static Course updateEntity(Course originalCourse, CourseRequest updateCourse) {
+
+        originalCourse.setName(updateCourse.name());
+        originalCourse.setSemesters(updateCourse.semesters());
+        
+        return originalCourse;
     }
 }
