@@ -45,13 +45,7 @@ public class StudentServiceImpl implements StudentService {
     public StudentResponse update(StudentRequest studentRequestDTO, Long enrollmentId) {
         Student originalStudent = findStudent(enrollmentId);
 
-        originalStudent.setFirstName(studentRequestDTO.firstName());
-        originalStudent.setLastName(studentRequestDTO.lastName());
-        originalStudent.setBirthDate(studentRequestDTO.birthDate());
-        originalStudent.setGrade(studentRequestDTO.grade());
-        originalStudent.setParentName(studentRequestDTO.parentName());
-        originalStudent.setParentNumber(studentRequestDTO.parentNumber());
-
+        StudentMapper.updateEntity(originalStudent, studentRequestDTO);
         studentRepository.save(originalStudent);
 
         return StudentMapper.studentToDto(originalStudent);

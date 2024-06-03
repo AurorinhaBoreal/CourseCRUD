@@ -35,4 +35,16 @@ public interface StudentMapper {
             .parentNumber(studentDTO.parentNumber())
             .build();
     }
+    
+    static Student updateEntity(Student originalStudent, StudentRequest updateStudent) {
+
+        originalStudent.setFirstName(updateStudent.firstName());
+        originalStudent.setLastName(updateStudent.lastName());
+        originalStudent.setGrade(updateStudent.grade());
+        originalStudent.setBirthDate(updateStudent.birthDate());
+        originalStudent.setParentName(updateStudent.parentName());
+        originalStudent.setParentNumber(updateStudent.parentNumber());
+        
+        return originalStudent;
+    }
 }
