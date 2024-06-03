@@ -13,11 +13,11 @@ public class TeacherFixture {
     }
 
     public static TeacherRequest TeacherDTOUpdateFixture() {
-        return new TeacherRequest(111L, "Pedror", "Los", LocalDate.of(1995, 02, 24), "11954672398", "09730461040");
+        return new TeacherRequest(113L, "Pedror", "Los", LocalDate.of(1995, 02, 24), "11954672398", "00568495080");
     }
 
     public static TeacherRequest TeacherDTOInvalidFixture() {
-        return new TeacherRequest(111L, null, null, LocalDate.of(1995, 02, 24), null, null);
+        return new TeacherRequest(112L, null, null, LocalDate.of(1995, 02, 24), null, null);
     }
 
     public static Teacher TeacherEntityValid() {

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.db.crud.course.dto.mapper.TeacherMapper;
 import com.db.crud.course.dto.request.TeacherRequest;
 import com.db.crud.course.dto.response.TeacherResponse;
+import com.db.crud.course.exception.DuplicateCpfException;
+import com.db.crud.course.exception.ObjectsDontMatchException;
 import com.db.crud.course.model.Teacher;
 import com.db.crud.course.repository.TeacherRepository;
 
@@ -53,7 +55,6 @@ public class TeacherServiceImpl implements TeacherService {
         return TeacherMapper.teacherToDto(originalTeacher);
     }
 
-    // TODO: Create Customized Exceptions
     @Override
     public Long delete(Long teacherId, String cpf) {
         Teacher teacherOne = findTeacher(teacherId);
@@ -63,7 +64,7 @@ public class TeacherServiceImpl implements TeacherService {
             teacherRepository.delete(teacherOne);
             return teacherId;
         } else {
-            throw new RuntimeException("The data doesn't match!");
+            throw new ObjectsDontMatchException("Objects found through parameters don't match.");
         }
         
     }
@@ -72,9 +73,6 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public Teacher findTeacher(Long teacherId) {
         Teacher teacherFounded = teacherRepository.findByTeacherId(teacherId).get();
-        if (teacherFounded == null) {
-            throw new RuntimeException("Teacher with this enrollment ID isn't registered!");
-        }
 
         return teacherFounded;
     }
@@ -83,7 +81,7 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public boolean verifyCPF(String cpf) {
         if (teacherRepository.existsByCpf(cpf)) {
-            throw new RuntimeException("This cpf already is registered. CPF: "+cpf);
+            throw new DuplicateCpfException("This cpf already is registered. CPF: "+cpf);
         }
         return false;
     }
