@@ -3,6 +3,7 @@ package com.db.crud.course.unitary;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -12,6 +13,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
+import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,6 +27,8 @@ import org.springframework.data.domain.Pageable;
 import com.db.crud.course.dto.mapper.TeacherMapper;
 import com.db.crud.course.dto.request.TeacherRequest;
 import com.db.crud.course.dto.response.TeacherResponse;
+import com.db.crud.course.exception.DuplicateCpfException;
+import com.db.crud.course.exception.ObjectsDontMatchException;
 import com.db.crud.course.fixture.TeacherFixture;
 import com.db.crud.course.model.Teacher;
 import com.db.crud.course.repository.TeacherRepository;
@@ -63,16 +67,6 @@ public class TeacherUnitary {
         verify(teacherRepository).findAll(pageable);
         verifyNoMoreInteractions(teacherRepository);
     }
-    // void listTeachers() {
-    //     var listTeachers = mock(Page.class);
-    //     // when(teacherRepository.findAll(pageable)).thenReturn(listTeachers);
-    //     when(teacherRepository.findAll(pageable)).thenReturn(listTeachers);
-
-    //     listTeachers = teacherService.list(pageable);
-
-    //     verify(teacherRepository).findAll(pageable);
-    //     verifyNoMoreInteractions(teacherRepository);
-    // }
 
     @Test
     @DisplayName("Happy Test: Teacher Service Create Teacher")
@@ -111,15 +105,18 @@ public class TeacherUnitary {
         assertEquals(12, deleted);
     }
 
-    // @Test
-    // @DisplayName("Sad Test:")
-    // void shouldNotDeleteStudent() {
-    // ... thrown = assertThrows(....class, () -> {
-    // // TODO: Test Logic
-    // });
+    @Test
+    @DisplayName("Sad Test: Teacher Service Shouldn't Delete Teacher")
+    void shouldNotDeleteTeacher() {
+    ObjectsDontMatchException thrown = assertThrows(ObjectsDontMatchException.class, () -> {
+        when(teacherRepository.findByTeacherId(113L)).thenReturn(Optional.of(teacherEntityUpdate));
+        when(teacherRepository.findByCpf("09730461040")).thenReturn(Optional.of(teacherEntityValid));
+
+        teacherService.delete(113L, "09730461040");
+    });
     
-    // assertEquals(, thrown.getMessage());
-    // }
+    assertEquals("Objects found through parameters don't match.", thrown.getMessage());
+    }
 
     @Test
     @DisplayName("Happy Test: Teacher Repository findByCpf")
@@ -131,27 +128,27 @@ public class TeacherUnitary {
         assertNotNull(foundTeacher);
     }
 
-    // @Test
-    // @DisplayName("Sad Test: Student Repository findByCpf")
-    // void shouldNotFindByCpf() {
-    // ... thrown = assertThrows(....class, () -> {
-    //     // TODO: Test Logic
-    // });
+    @Test
+    @DisplayName("Sad Test: Teacher Repository findByTeacherId")
+    void shouldNotFindByEnrollmentId() {
+        NoSuchElementException thrown = assertThrows(NoSuchElementException.class, () -> {
+            teacherService.findTeacher(10L);
+        });
     
-    // assertEquals(, thrown.getMessage());
-    // }
+        assertEquals("No value present", thrown.getMessage());
+    }
 
-    // @Test
-	// @DisplayName("Sad Test: Should thrown DuplicateCpfException in create")
-	// void thrownDuplicateCpfException() {
-	// 	DuplicateCpfException thrown = assertThrows(DuplicateCpfException.class, () -> {
-	// 		when(personRepository.existsByCpf(anyString())).thenReturn(true);
+    @Test
+	@DisplayName("Sad Test: Should thrown DuplicateCpfException in create")
+	void thrownDuplicateCpfException() {
+		DuplicateCpfException thrown = assertThrows(DuplicateCpfException.class, () -> {
+			when(teacherRepository.existsByCpf(anyString())).thenReturn(true);
 
-	// 		personService.create(personDTOValid);
-	// 	});
+			teacherService.create(teacherDTOValid);
+		});
 	
-	// 	assertEquals("Already exists a person with this cpf!", thrown.getMessage());
-	// }
+		assertEquals("This cpf already is registered. CPF: 09730461040", thrown.getMessage());
+	}
 
     @Test
     @DisplayName("Happy Test: Teacher Service Verify CPF")
@@ -162,16 +159,6 @@ public class TeacherUnitary {
 
         assertFalse(verification);
     }
-
-    // @Test
-    // @DisplayName("Sad Test: Student Service Verify CPF")
-    // void verifyInvalidCpf() {
-    // ... thrown = assertThrows(....class, () -> {
-    // // TODO: Test Logic
-    // });
-    
-    // assertEquals(, thrown.getMessage());
-    // }
 
     @Test
     @DisplayName("Happy Test: Teacher Service Find Teacher")

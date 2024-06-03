@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.db.crud.course.dto.mapper.TeacherMapper;
 import com.db.crud.course.dto.request.TeacherRequest;
 import com.db.crud.course.dto.response.TeacherResponse;
+import com.db.crud.course.exception.DuplicateCpfException;
+import com.db.crud.course.exception.ObjectsDontMatchException;
 import com.db.crud.course.model.Teacher;
 import com.db.crud.course.repository.TeacherRepository;
 
@@ -43,17 +45,12 @@ public class TeacherServiceImpl implements TeacherService {
     public TeacherResponse update(TeacherRequest teacherRequestDTO, Long teacherId) {
         Teacher originalTeacher = findTeacher(teacherId);
 
-        originalTeacher.setFirstName(teacherRequestDTO.firstName());
-        originalTeacher.setLastName(teacherRequestDTO.lastName());
-        originalTeacher.setBirthDate(teacherRequestDTO.birthDate());
-        originalTeacher.setPhoneNumber(teacherRequestDTO.phoneNumber());
-
+        TeacherMapper.updateEntity(originalTeacher, teacherRequestDTO);
         teacherRepository.save(originalTeacher);
 
         return TeacherMapper.teacherToDto(originalTeacher);
     }
 
-    // TODO: Create Customized Exceptions
     @Override
     public Long delete(Long teacherId, String cpf) {
         Teacher teacherOne = findTeacher(teacherId);
@@ -63,27 +60,22 @@ public class TeacherServiceImpl implements TeacherService {
             teacherRepository.delete(teacherOne);
             return teacherId;
         } else {
-            throw new RuntimeException("The data doesn't match!");
+            throw new ObjectsDontMatchException("Objects found through parameters don't match.");
         }
         
     }
 
-    // TODO: Create Customized Exceptions
     @Override
     public Teacher findTeacher(Long teacherId) {
         Teacher teacherFounded = teacherRepository.findByTeacherId(teacherId).get();
-        if (teacherFounded == null) {
-            throw new RuntimeException("Teacher with this enrollment ID isn't registered!");
-        }
 
         return teacherFounded;
     }
 
-    // TODO: Create Customized Exceptions
     @Override
     public boolean verifyCPF(String cpf) {
         if (teacherRepository.existsByCpf(cpf)) {
-            throw new RuntimeException("This cpf already is registered. CPF: "+cpf);
+            throw new DuplicateCpfException("This cpf already is registered. CPF: "+cpf);
         }
         return false;
     }
