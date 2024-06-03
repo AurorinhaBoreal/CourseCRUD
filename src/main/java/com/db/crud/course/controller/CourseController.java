@@ -1,10 +1,18 @@
 package com.db.crud.course.controller;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import com.db.crud.course.dto.request.CourseRequest;
+import com.db.crud.course.dto.response.CourseResponse;
+import com.db.crud.course.service.course.CourseService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,25 +32,26 @@ public class CourseController {
     private CourseService courseService;
 
     @GetMapping
-    public String getMethodName(@RequestParam String param) {
-        return new String();
+    public Page<Object> listPageable(@PageableDefault(size = 3, sort = {"name"}) Pageable pageable) {
+        return courseService.list(pageable);
     }
 
     @PostMapping("/create")
-    public String postMethodName(@RequestBody String entity) {
-        //TODO: process POST request
-        
-        return entity;
+    public ResponseEntity<CourseResponse> create(@RequestBody CourseRequest courseRequest) {
+        var body = courseService.create(courseRequest);        
+        return ResponseEntity.status(HttpStatus.CREATED).body(body);
     }
 
     @PutMapping("/update/{courseId}")
-    public String putMethodName(@PathVariable String id, @RequestBody String entity) {
-        //TODO: process PUT request
-        
-        return entity;
+    public ResponseEntity<CourseResponse> putMethodName(@PathVariable Long courseId, @RequestBody CourseRequest updateCourse) {
+        var body = courseService.update(updateCourse, courseId);
+        return ResponseEntity.status(HttpStatus.OK).body(body);
     }
 
     @DeleteMapping("/delete/{courseId}-{courseName}")
-    
+    public ResponseEntity<Void> delete(@PathVariable Long courseId, @PathVariable String courseName) {
+        courseService.delete(courseId, courseName);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
     
 }
