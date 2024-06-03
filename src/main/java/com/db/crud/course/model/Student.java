@@ -32,6 +32,9 @@ public class Student {
     @Column(name = "id_student")
     private Long Id;
 
+    @Column(name = "enrollment_id", unique = true, nullable = false)
+    private Long enrollmentId;
+
     @Column(name = "first_name", length = 20, nullable = false)
     private String firstName;
 
@@ -46,7 +49,7 @@ public class Student {
     private LocalDate birthDate;
 
     @Column(length = 11, nullable = false)
-    private String Cpf;
+    private String cpf;
 
     @Column(name = "parent_name")
     private String parentName;
