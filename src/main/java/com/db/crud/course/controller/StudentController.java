@@ -45,7 +45,7 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.OK).body(body);
     }
 
-    @DeleteMapping("/delete/{enrollmentId}-{cpf}")
+    @DeleteMapping("/delete/{enrollmentId}/{cpf}")
     public ResponseEntity<Void> delete(@PathVariable Long enrollmentId, @PathVariable String cpf) {
         studentService.delete(enrollmentId, cpf);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
