@@ -35,6 +35,9 @@ public class Teacher {
     @Column(name = "id_teacher")
     private Long Id;
 
+    @Column(name = "teacher_id", unique = true, nullable = false)
+    private Long teacherId;
+
     @Column(name = "first_name", length = 20, nullable = false)
     private String firstName;
 

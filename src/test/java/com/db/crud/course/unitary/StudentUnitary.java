@@ -3,6 +3,7 @@ package com.db.crud.course.unitary;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -12,6 +13,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
+import java.util.NoSuchElementException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,11 +26,13 @@ import org.springframework.data.domain.Pageable;
 import com.db.crud.course.dto.mapper.StudentMapper;
 import com.db.crud.course.dto.request.StudentRequest;
 import com.db.crud.course.dto.response.StudentResponse;
+import com.db.crud.course.exception.DuplicateCpfException;
+import com.db.crud.course.exception.ObjectsDontMatchException;
 import com.db.crud.course.fixture.StudentFixture;
 import com.db.crud.course.model.Student;
 import com.db.crud.course.repository.StudentRepository;
-import com.db.crud.course.service.StudentService;
-import com.db.crud.course.service.StudentServiceImpl;
+import com.db.crud.course.service.student.StudentService;
+import com.db.crud.course.service.student.StudentServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class StudentUnitary {
@@ -102,7 +106,20 @@ public class StudentUnitary {
 
         assertEquals(12, deleted);
     }
+
+    @Test
+    @DisplayName("Sad Test: Student Service Shouldn't Delete Student")
+    void shouldNotDeleteStudent() {
+    ObjectsDontMatchException thrown = assertThrows(ObjectsDontMatchException.class, () -> {
+        when(studentRepository.findByEnrollmentId(113L)).thenReturn(Optional.of(studentEntityUpdate));
+        when(studentRepository.findByCpf("09730461040")).thenReturn(Optional.of(studentEntityValid));
+
+        studentService.delete(113L, "09730461040");
+    });
     
+    assertEquals("Objects found through parameters don't match.", thrown.getMessage());
+    }
+
     @Test
     @DisplayName("Happy Test: Student Repository findByCpf")
     void shouldFindByCpf() {
@@ -112,6 +129,28 @@ public class StudentUnitary {
 
         assertNotNull(foundStudent);
     }
+
+    @Test
+    @DisplayName("Sad Test: Student Repository findByEnrollmentId")
+    void shouldNotFindByEnrollmentId() {
+        NoSuchElementException thrown = assertThrows(NoSuchElementException.class, () -> {
+            studentService.findStudent(10L);
+        });
+    
+        assertEquals("No value present", thrown.getMessage());
+    }
+
+    @Test
+	@DisplayName("Sad Test: Should thrown DuplicateCpfException in create")
+	void thrownDuplicateCpfException() {
+		DuplicateCpfException thrown = assertThrows(DuplicateCpfException.class, () -> {
+			when(studentRepository.existsByCpf(anyString())).thenReturn(true);
+
+			studentService.create(studentDTOValid);
+		});
+	
+		assertEquals("This cpf already is registered. CPF: 09730461040", thrown.getMessage());
+	}
 
     @Test
     @DisplayName("Happy Test: Student Service Verify CPF")
