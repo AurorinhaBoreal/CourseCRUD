@@ -15,7 +15,7 @@ public interface CourseService {
     
     public CourseResponse update(CourseRequest courseRequestDTO, Long courseId);
 
-    public Long delete(Long courseId, String cpf);
+    public Long delete(Long courseId, String name);
 
     public Course findCourse(Long courseId);
 
