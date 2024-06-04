@@ -55,12 +55,11 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Long delete(Long courseId, String name) {
-        Course courseOne = findCourse(courseId);
-        Course courseTwo = courseRepository.findByName(name).get();
+    public Long delete(Long courseId, Integer courseDuration) {
+        Course course = findCourse(courseId);
 
-        if (courseOne == courseTwo) {
-            courseRepository.delete(courseOne);
+        if (course.getSemesters() == courseDuration) {
+            courseRepository.delete(course);
             return courseId;
         } else {
             throw new ObjectsDontMatchException("Objects found through parameters don't match.");
