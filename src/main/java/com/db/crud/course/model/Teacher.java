@@ -2,6 +2,9 @@ package com.db.crud.course.model;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.ArrayList;
 
 import jakarta.persistence.CascadeType;
@@ -58,6 +61,7 @@ public class Teacher {
     // Por essa Entidade ter o "mappedBy", ela vai ser a filha da relação
     // Ou seja, quem vai gerenciar a chave estrangeira será a Entidade curso
     @OneToMany(mappedBy = "teacherId", cascade = CascadeType.DETACH, orphanRemoval = true)
+    @JsonManagedReference
     @Valid
     private List<Course> courses = new ArrayList<>();
 }

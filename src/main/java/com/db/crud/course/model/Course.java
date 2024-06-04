@@ -2,6 +2,7 @@ package com.db.crud.course.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.util.ArrayList;
 
@@ -42,6 +43,7 @@ public class Course {
     // Indica o ID do professor que da aula nesse curso, fechando a relação na Entidade Teacher
     // Muitos Cursos podem ter um (o mesmo) professor
     @ManyToOne(cascade = CascadeType.PERSIST)
+    @JsonBackReference
     @JoinColumn(name = "course_teacher", nullable = false)
     private Teacher teacherId;
 
