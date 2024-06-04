@@ -11,7 +11,7 @@ public record CourseRequest(
     Long courseId,
 
     @NotBlank(message = "Must assign a teacher to the course.")
-    Teacher teacherId,
+    Long teacherId,
 
     @NotBlank(message = "Must inform the course name.")
     String name,

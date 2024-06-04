@@ -1,10 +1,10 @@
 package com.db.crud.course.dto.response;
 
-import com.db.crud.course.model.Teacher;
-
 import lombok.Builder;
 
 import com.db.crud.course.model.Student;
+import com.db.crud.course.model.Teacher;
+
 import java.util.List;
 
 @Builder

@@ -5,9 +5,10 @@ import org.mapstruct.Mapper;
 import com.db.crud.course.dto.request.CourseRequest;
 import com.db.crud.course.dto.response.CourseResponse;
 import com.db.crud.course.model.Course;
+import com.db.crud.course.model.Teacher;
 
 @Mapper(componentModel = "spring")
-public class CourseMapper {
+public interface CourseMapper {
     
     static CourseResponse courseToDto(Course course) {
         return CourseResponse.builder()
@@ -19,10 +20,10 @@ public class CourseMapper {
             .build();
     }
 
-    static Course dtoToCourse(CourseRequest courseDTO) {
+    static Course dtoToCourse(CourseRequest courseDTO, Teacher teacher) {
         return Course.builder()
             .courseId(courseDTO.courseId())
-            .teacherId(courseDTO.teacherId())
+            .teacherId(teacher)
             .name(courseDTO.name())
             .semesters(courseDTO.semesters())
             .build();
