@@ -71,7 +71,7 @@ public class CourseUnitary {
     @DisplayName("Happy Test: Course Service Create Course")
     void createCourse() {
         when(courseRepository.save(any())).thenReturn(courseEntityValid);
-        when(teacherRepository.findById(anyLong())).thenReturn(Optional.of(teacherEntityValid));
+        when(teacherRepository.findByTeacherId(anyLong())).thenReturn(Optional.of(teacherEntityValid));
 
         CourseResponse createdCourse = courseService.create(courseDTOValid);
 
