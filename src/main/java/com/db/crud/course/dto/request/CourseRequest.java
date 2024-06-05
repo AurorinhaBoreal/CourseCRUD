@@ -1,7 +1,5 @@
 package com.db.crud.course.dto.request;
 
-import com.db.crud.course.model.Teacher;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
