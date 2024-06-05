@@ -2,6 +2,9 @@ package com.db.crud.course.model;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 
 import jakarta.persistence.Column;
@@ -30,6 +33,7 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_student")
+    @JsonIgnore
     private Long Id;
 
     @Column(name = "enrollment_id", unique = true, nullable = false)
@@ -42,13 +46,14 @@ public class Student {
     private String lastName;
 
     @Column(length = 2, nullable = false)
-    private Integer grade;
+    private Integer semester;
 
     @Column(name = "birth_date", nullable = false)
     @NotNull(message = "Informe uma data válida!")
     private LocalDate birthDate;
 
     @Column(length = 11, nullable = false)
+    @JsonIgnore
     private String cpf;
 
     @Column(name = "parent_name")
@@ -59,6 +64,7 @@ public class Student {
 
     // Vários estudantes podem fazer vários cursos diferentes - ONE TO MANY
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "students")
     private List<Course> courses = new ArrayList<>();
 }

@@ -3,6 +3,7 @@ package com.db.crud.course.model;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
 
@@ -35,6 +36,7 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_course")
+    @JsonIgnore
     private Long Id;
 
     @Column(name = "course_id", unique = true, nullable = false)
@@ -54,6 +56,7 @@ public class Course {
     private Integer semesters;
 
     // Vários estudantes, estudam em vários cursos - MANY TO MANY
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "tbl_course_students",

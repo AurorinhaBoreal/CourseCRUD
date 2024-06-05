@@ -3,11 +3,11 @@ package com.db.crud.course.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.ArrayList;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,6 +36,7 @@ public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_teacher")
+    @JsonIgnore
     private Long Id;
 
     @Column(name = "teacher_id", unique = true, nullable = false)
@@ -55,6 +56,7 @@ public class Teacher {
     private String phoneNumber;
 
     @Column(length = 11, nullable = false)
+    @JsonIgnore
     private String cpf;
 
     // Um professor para varios cursos - ONE TO MANY
@@ -62,6 +64,7 @@ public class Teacher {
     // Ou seja, quem vai gerenciar a chave estrangeira será a Entidade curso
     @OneToMany(mappedBy = "teacherId")
     @JsonManagedReference
+    @JsonIgnore
     @Valid
     private List<Course> courses = new ArrayList<>();
 }
