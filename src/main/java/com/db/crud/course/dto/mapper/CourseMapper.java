@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 
 import com.db.crud.course.dto.request.CourseRequest;
 import com.db.crud.course.dto.response.CourseResponse;
+import com.db.crud.course.dto.response.CourseStudentResponse;
 import com.db.crud.course.model.Course;
 import com.db.crud.course.model.Teacher;
 
@@ -35,5 +36,14 @@ public interface CourseMapper {
         originalCourse.setSemesters(updateCourse.semesters());
         
         return originalCourse;
+    }
+
+    static CourseStudentResponse courseStudent(Course courseDTO) {
+        return CourseStudentResponse.builder()
+            .courseId(courseDTO.getCourseId())
+            .name(courseDTO.getName())
+            .semesters(courseDTO.getSemesters())
+            .students(courseDTO.getStudents())
+            .build();
     }
 }

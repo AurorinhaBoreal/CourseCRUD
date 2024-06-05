@@ -53,25 +53,25 @@
 - ✅ Criar Aluno
 - ✅ Atualizar Aluno
 - ✅ Excluir Aluno
-- 🚧 Matricular Aluno
-- 🚧 Desmatricular Aluno
+- ✅ Matricular Aluno
+- ✅ Desmatricular Aluno
 - ✅ Criar Professor
 - ✅ Atualizar Professor
 - ✅ Excluir Professor
 - ✅ Criar Curso
 - ✅ Atualizar Curso
 - ✅ Excluir Curso
-- 🚧 Ver Alunos do Curso
-- 🚧 Ver Cursos
+- ✅ Ver Alunos do Curso
+- ✅ Ver Cursos
 - 🚧 Validações
-- 🚧 Testes Unitários
+- ✅ Testes Unitários
  
 -> EXTRAS:
 - 🚧 Mostrar Idade do Aluno e Professor
-- 🚧 Tratamento de Exceções
+- ✅ Tratamento de Exceções
 - 🚧 Testes de Integração
-- 🚧 Swagger
-- 🚧 Paginação de Curso
+- ✅ Swagger
+- ✅ Paginação de Curso
  
 US's - MVP
 - ✅ [US001] Configurar Ambiente
@@ -96,16 +96,16 @@ US's - MVP
     - ✅ [US005-2] Paginação de Curso
     - ✅ [US005-3] Atualizar Curso
     - ✅ [US005-4] Excluir Curso
-- 🚧 [US006] Gerenciar Alunos no Curso
-    - 🚧 [US006-1] Matricular Aluno no Curso
-    - 🚧 [US006-2] Desmatricular Aluno do Curso
-    - 🚧 [US006-3] Ver Alunos no Curso
+- ✅ [US006] Gerenciar Alunos no Curso
+    - ✅ [US006-1] Matricular Aluno no Curso
+    - ✅ [US006-2] Desmatricular Aluno do Curso
+    - ✅ [US006-3] Ver Alunos no Curso
 
 US's - EXTRA
 - 🚧 [US00X] Funcionalidades Opcionais
-    - 🚧 [US00X-1] Swagger
-    - 🚧 [US00X-2] Tratamento de Exceções
-    - 🚧 [US00X-3] Testes Unitários
+    - ✅ [US00X-1] Swagger
+    - ✅ [US00X-2] Tratamento de Exceções
+    - ✅ [US00X-3] Testes Unitários
     - 🚧 [US00X-4] Testes de Integração
     - 🚧 [US00X-5] Buscar Aluno por Nome/CPF
     - 🚧 [US00X-6] Buscar Professor por Nome/CPF

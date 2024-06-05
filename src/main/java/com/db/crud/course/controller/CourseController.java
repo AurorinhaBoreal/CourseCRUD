@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.db.crud.course.dto.request.CourseRequest;
 import com.db.crud.course.dto.response.CourseResponse;
+import com.db.crud.course.dto.response.CourseStudentResponse;
 import com.db.crud.course.service.course.CourseService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
-
-
-
 @RestController
 @RequestMapping("/course")
 public class CourseController {
@@ -35,6 +33,27 @@ public class CourseController {
     public Page<Object> listPageable(@PageableDefault(size = 3, sort = {"name"}) Pageable pageable) {
         return courseService.list(pageable);
     }
+
+    @GetMapping("/students")
+    public Page<Object> listCourseStudents(@PageableDefault(size = 5, sort = {"name"}) Pageable pageable) {
+        return courseService.listStudents(pageable);
+    }    
+
+    @PostMapping("/enroll/{courseId}/{studentId}")
+    public ResponseEntity<CourseStudentResponse> enrollStudent(@PathVariable Long courseId, @PathVariable Long studentId) {
+        var body = courseService.enroll(courseId, studentId);
+        
+        return ResponseEntity.status(HttpStatus.OK).body(body);
+    }
+
+    @DeleteMapping("/disenroll/{courseId}/{studentId}")
+    public ResponseEntity<CourseStudentResponse> disenrollStudent(@PathVariable Long courseId, @PathVariable Long studentId) {
+        var body = courseService.disenroll(courseId, studentId);
+        
+        return ResponseEntity.status(HttpStatus.OK).body(body);
+    }
+
+    
 
     @PostMapping("/create")
     public ResponseEntity<CourseResponse> create(@RequestBody CourseRequest courseRequest) {

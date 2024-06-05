@@ -73,7 +73,7 @@ public class StudentUnitary {
 
         StudentResponse createdStudent = studentService.create(studentDTOValid);
 
-        assertEquals(7, createdStudent.grade());
+        assertEquals(7, createdStudent.semester());
         assertEquals( "Aurora", createdStudent.firstName());
         assertEquals( "Kruschewsky", createdStudent.lastName());
         assertEquals( "Geisa Kruschewsky", createdStudent.parentName());
