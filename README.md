@@ -48,7 +48,7 @@
 - ✅ Entidade Curso
 - ✅ Relacionar Curso e Professor (n:1)
 - ✅ Relacionar Curso e Aluno (n:n)
-- 🚧 Listar Professor, Aluno e Curso
+- ✅ Listar Professor, Aluno e Curso
 - 🚧 Buscar Aluno no Curso
 - ✅ Criar Aluno
 - ✅ Atualizar Aluno
@@ -58,9 +58,9 @@
 - ✅ Criar Professor
 - ✅ Atualizar Professor
 - ✅ Excluir Professor
-- 🚧 Criar Curso
-- 🚧 Atualizar Curso
-- 🚧 Excluir Curso
+- ✅ Criar Curso
+- ✅ Atualizar Curso
+- ✅ Excluir Curso
 - 🚧 Ver Alunos do Curso
 - 🚧 Ver Cursos
 - 🚧 Validações
@@ -91,15 +91,15 @@ US's - MVP
     - ✅ [US004-2] Listar Professores
     - ✅ [US004-3] Atualizar Professor
     - ✅ [US004-4] Remover Professor
-- 🚧 [US005] Como administrador quero administrar um curso
-    - 🚧 [US005-1] Criar Curso
-    - 🚧 [US005-2] Paginação de Curso
-    - 🚧 [US005-3] Atualizar Curso
-    - 🚧 [US005-4] Excluir Curso
-    - 🚧 [US005-5] Ver Alunos no Curso
+- ✅ [US005] Como administrador quero administrar um curso
+    - ✅ [US005-1] Criar Curso
+    - ✅ [US005-2] Paginação de Curso
+    - ✅ [US005-3] Atualizar Curso
+    - ✅ [US005-4] Excluir Curso
 - 🚧 [US006] Gerenciar Alunos no Curso
     - 🚧 [US006-1] Matricular Aluno no Curso
     - 🚧 [US006-2] Desmatricular Aluno do Curso
+    - 🚧 [US006-3] Ver Alunos no Curso
 
 US's - EXTRA
 - 🚧 [US00X] Funcionalidades Opcionais
