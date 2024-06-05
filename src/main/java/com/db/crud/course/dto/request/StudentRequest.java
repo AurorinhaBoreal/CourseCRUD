@@ -18,8 +18,8 @@ public record StudentRequest(
     @NotBlank(message = "Last name cannot be empty!")
     String lastName,
 
-    @NotNull(message = "It must be informed a school grade!")
-    Integer grade,
+    @NotNull(message = "It must be informed a course semester!")
+    Integer semester,
 
     @NotNull(message = "Date must be valid!")
     LocalDate birthDate,

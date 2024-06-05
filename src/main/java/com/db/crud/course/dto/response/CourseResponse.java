@@ -11,8 +11,8 @@ import java.util.List;
 public record CourseResponse(
 
     Long courseId,
-    Teacher teacherId,
     String name,
     Integer semesters,
+    Teacher teacherId,
     List<Student> students
 ) {}
