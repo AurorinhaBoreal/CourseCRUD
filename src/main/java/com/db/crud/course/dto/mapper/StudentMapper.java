@@ -14,7 +14,7 @@ public interface StudentMapper {
             .enrollmentId(student.getEnrollmentId())
             .firstName(student.getFirstName())
             .lastName(student.getLastName())
-            .grade(student.getGrade())
+            .semester(student.getSemester())
             .birthDate(student.getBirthDate())
             .cpf(student.getCpf())
             .parentName(student.getParentName())
@@ -28,7 +28,7 @@ public interface StudentMapper {
             .enrollmentId(studentDTO.enrollmentId())
             .firstName(studentDTO.firstName())
             .lastName(studentDTO.lastName())
-            .grade(studentDTO.grade())
+            .semester(studentDTO.semester())
             .birthDate(studentDTO.birthDate())
             .cpf(studentDTO.cpf())
             .parentName(studentDTO.parentName())
@@ -40,7 +40,7 @@ public interface StudentMapper {
 
         originalStudent.setFirstName(updateStudent.firstName());
         originalStudent.setLastName(updateStudent.lastName());
-        originalStudent.setGrade(updateStudent.grade());
+        originalStudent.setSemester(updateStudent.semester());
         originalStudent.setBirthDate(updateStudent.birthDate());
         originalStudent.setParentName(updateStudent.parentName());
         originalStudent.setParentNumber(updateStudent.parentNumber());

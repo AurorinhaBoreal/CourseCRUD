@@ -12,7 +12,7 @@ public record StudentResponse(
     Long enrollmentId,
     String firstName,
     String lastName,
-    Integer grade,
+    Integer semester,
     LocalDate birthDate,
     String cpf,
     String parentName,
