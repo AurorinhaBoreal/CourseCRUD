@@ -43,72 +43,73 @@
 ## Minimum Viable Product
 - ✅ Container Docker
 - ✅ Conectar Banco
-- 🚧 Entidade Professor
-- 🚧 Entidade Aluno
-- 🚧 Entidade Curso
-- 🚧 Relacionar Curso e Professor (n:1)
-- 🚧 Relacionar Curso e Aluno (n:n)
-- 🚧 Listar Professor, Aluno e Curso
+- ✅ Entidade Professor
+- ✅ Entidade Aluno
+- ✅ Entidade Curso
+- ✅ Relacionar Curso e Professor (n:1)
+- ✅ Relacionar Curso e Aluno (n:n)
+- ✅ Listar Professor, Aluno e Curso
 - 🚧 Buscar Aluno no Curso
-- 🚧 Criar Aluno
-- 🚧 Atualizar Aluno
-- 🚧 Excluir Aluno
-- 🚧 Matricular Aluno
-- 🚧 Desmatricular Aluno
-- 🚧 Criar Professor
-- 🚧 Atualizar Professor
-- 🚧 Excluir Professor
-- 🚧 Criar Curso
-- 🚧 Atualizar Curso
-- 🚧 Excluir Curso
-- 🚧 Ver Alunos do Curso
-- 🚧 Ver Cursos
+- ✅ Criar Aluno
+- ✅ Atualizar Aluno
+- ✅ Excluir Aluno
+- ✅ Matricular Aluno
+- ✅ Desmatricular Aluno
+- ✅ Criar Professor
+- ✅ Atualizar Professor
+- ✅ Excluir Professor
+- ✅ Criar Curso
+- ✅ Atualizar Curso
+- ✅ Excluir Curso
+- ✅ Ver Alunos do Curso
+- ✅ Ver Cursos
 - 🚧 Validações
-- 🚧 Testes Unitários
+- ✅ Testes Unitários
  
 -> EXTRAS:
 - 🚧 Mostrar Idade do Aluno e Professor
-- 🚧 Tratamento de Exceções
+- ✅ Tratamento de Exceções
 - 🚧 Testes de Integração
-- 🚧 Swagger
-- 🚧 Paginação de Curso
+- ✅ Swagger
+- ✅ Paginação de Curso
  
 US's - MVP
 - ✅ [US001] Configurar Ambiente
     - ✅ [US001-1] Criar Container Docker
     - ✅ [US001-2] Conectar Banco
-- 🚧 [US002] Criar Entidades
-    - 🚧 [US002-1] Entidade Aluno
-    - 🚧 [US002-2] Entidade Professor
-    - 🚧 [US002-3] Entidade Curso
-- 🚧 [US003] Como aluno, quero me registrar
-    - 🚧 [US003-1] Criar Aluno
-    - 🚧 [US003-2] Listar Alunos
-    - 🚧 [US003-3] Atualizar Aluno
-    - 🚧 [US003-4] Remover Aluno
-- 🚧 [US004] Como professor, quero me registrar
-    - 🚧 [US004-1] Criar Professor
-    - 🚧 [US004-2] Listar Professores
-    - 🚧 [US004-3] Atualizar Professor
-    - 🚧 [US004-4] Remover Professor
-- 🚧 [US005] Como administrador quero administrar um curso
-    - 🚧 [US005-1] Criar Curso
-    - 🚧 [US005-2] Paginação de Curso
-    - 🚧 [US005-3] Atualizar Curso
-    - 🚧 [US005-4] Excluir Curso
-    - 🚧 [US005-5] Ver Alunos no Curso
-- 🚧 [US006] Gerenciar Alunos no Curso
-    - 🚧 [US006-1] Matricular Aluno no Curso
-    - 🚧 [US006-2] Desmatricular Aluno do Curso
+- ✅ [US002] Criar Entidades
+    - ✅ [US002-1] Entidade Aluno
+    - ✅ [US002-2] Entidade Professor
+    - ✅ [US002-3] Entidade Curso
+- ✅ [US003] Como aluno, quero me registrar
+    - ✅ [US003-1] Criar Aluno
+    - ✅ [US003-2] Listar Alunos
+    - ✅ [US003-3] Atualizar Aluno
+    - ✅ [US003-4] Remover Aluno
+- ✅ [US004] Como professor, quero me registrar
+    - ✅ [US004-1] Criar Professor
+    - ✅ [US004-2] Listar Professores
+    - ✅ [US004-3] Atualizar Professor
+    - ✅ [US004-4] Remover Professor
+- ✅ [US005] Como administrador quero administrar um curso
+    - ✅ [US005-1] Criar Curso
+    - ✅ [US005-2] Paginação de Curso
+    - ✅ [US005-3] Atualizar Curso
+    - ✅ [US005-4] Excluir Curso
+- ✅ [US006] Gerenciar Alunos no Curso
+    - ✅ [US006-1] Matricular Aluno no Curso
+    - ✅ [US006-2] Desmatricular Aluno do Curso
+    - ✅ [US006-3] Ver Alunos no Curso
 
 US's - EXTRA
 - 🚧 [US00X] Funcionalidades Opcionais
-    - 🚧 [US00X-1] Swagger
-    - 🚧 [US00X-2] Tratamento de Exceções
-    - 🚧 [US00X-3] Buscar Aluno por Nome/CPF
-    - 🚧 [US00X-4] Buscar Professor por Nome/CPF
-    - 🚧 [US00X-5] Testes de Integração
-    - 🚧 [US00X-6] Mostrar Idade do Aluno e Professor
+    - ✅ [US00X-1] Swagger
+    - ✅ [US00X-2] Tratamento de Exceções
+    - ✅ [US00X-3] Testes Unitários
+    - 🚧 [US00X-4] Testes de Integração
+    - 🚧 [US00X-5] Buscar Aluno por Nome/CPF
+    - 🚧 [US00X-6] Buscar Professor por Nome/CPF
+    - 🚧 [US00X-7] Mostrar Idade do Aluno e Professor
     
  
 - CONTROLLERS:
@@ -117,6 +118,6 @@ US's - EXTRA
 
 
     STUDENT
-
+    
 
     COURSE
