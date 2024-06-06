@@ -22,7 +22,7 @@ public class StudentFixture {
 
     public static Student StudentEntityValid() {
         Student student = StudentMapper.dtoToStudent(StudentDTOValidFixture());
-
+        student.setId(1L);
         return student;
     }
     
