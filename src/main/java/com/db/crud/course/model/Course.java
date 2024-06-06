@@ -55,8 +55,8 @@ public class Course {
     @Column(name = "course_duration", length = 2)
     private Integer semesters;
 
-    // Vários estudantes, estudam em vários cursos - MANY TO MANY
     @JsonIgnore
+    @Builder.Default()
     @ManyToMany
     @JoinTable(
         name = "tbl_course_students",

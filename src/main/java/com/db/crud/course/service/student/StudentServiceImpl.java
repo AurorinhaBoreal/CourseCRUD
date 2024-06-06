@@ -13,6 +13,7 @@ import com.db.crud.course.exception.ObjectsDontMatchException;
 import com.db.crud.course.model.Student;
 import com.db.crud.course.repository.StudentRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -32,6 +33,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Transactional
     public StudentResponse create(StudentRequest studentRequestDTO) {
 
         verifyCPF(studentRequestDTO.cpf());
@@ -42,6 +44,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Transactional
     public StudentResponse update(StudentRequest studentRequestDTO, Long enrollmentId) {
         Student originalStudent = findStudent(enrollmentId);
 
@@ -52,6 +55,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Transactional
     public Long delete(Long enrollmentId, String cpf) {
         Student studentOne = findStudent(enrollmentId);
         Student studentTwo = studentRepository.findByCpf(cpf).get();
