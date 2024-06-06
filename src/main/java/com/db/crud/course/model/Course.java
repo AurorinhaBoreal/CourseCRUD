@@ -55,6 +55,7 @@ public class Course {
     @Column(name = "course_duration", length = 2)
     private Integer semesters;
 
+
     @JsonIgnore
     @Builder.Default()
     @ManyToMany

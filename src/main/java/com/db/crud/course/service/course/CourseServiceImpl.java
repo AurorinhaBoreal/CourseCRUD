@@ -129,7 +129,7 @@ public class CourseServiceImpl implements CourseService {
 
         return studentFounded;
     }
-
+  
     public Teacher verifyTeacher(CourseRequest courseRequest) {
         Teacher teacherFound = teacherRepository.findByTeacherId(courseRequest.teacherId()).get();
         return teacherFound;
