@@ -12,7 +12,14 @@ import com.db.crud.course.model.Teacher;
 public class CourseFixture {
     
     public static TeacherRequest TeacherDTOValidFixture() {
-        return new TeacherRequest(111L, "Pedrro", "Lost", LocalDate.of(1995, 02, 24), "11954672398", "09730461040");
+        return TeacherRequest.builder()
+                .teacherId(1001L)
+                .firstName("Pedrro")
+                .lastName("Lost")
+                .birthDate(LocalDate.of(1995, 2, 24))
+                .cpf("11954672398")
+                .phoneNumber("09730461040")
+                .build();
     }
 
     public static Teacher TeacherEntityValid() {
@@ -22,14 +29,30 @@ public class CourseFixture {
     }
 
     public static CourseRequest CourseDTOValidFixture() {
-        return new CourseRequest(111L, 1L, "Técnico em Desenvolvimento de Sistemas", 6);
+        return CourseRequest.builder()
+            .courseId(111L)
+            .teacherId(1001L)
+            .name("Técnico em Desenvolvimento de Sistemas")
+            .semesters(6)
+            .build();
     }
-
+    
     public static CourseRequest CourseDTOUpdateFixture() {
-        return new CourseRequest(113L, 1L, "Técnólogo em Desenvolvimento de Sistemas", 8);
+        return CourseRequest.builder()
+                .courseId(113L)
+                .teacherId(1L)
+                .name("Técnólogo em Desenvolvimento de Sistemas")
+                .semesters(8)
+                .build();
     }
+    
     public static CourseRequest CourseDTOInvalidFixture() {
-        return new CourseRequest(112L, null, null, null);
+        return CourseRequest.builder()
+                .courseId(112L)
+                .teacherId(null)
+                .name(null)
+                .semesters(null)
+                .build();
     }
 
     public static Course CourseEntityValid() {
