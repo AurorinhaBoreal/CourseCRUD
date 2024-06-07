@@ -40,7 +40,6 @@
 - ✅ Relacionar Curso e Professor (n:1)
 - ✅ Relacionar Curso e Aluno (n:n)
 - ✅ Listar Professor, Aluno e Curso
-- 🚧 Buscar Aluno no Curso
 - ✅ Criar Aluno
 - ✅ Atualizar Aluno
 - ✅ Excluir Aluno
@@ -58,7 +57,6 @@
 - ✅ Testes Unitários
  
 -> EXTRAS:
-- 🚧 Mostrar Idade do Aluno e Professor
 - ✅ Tratamento de Exceções
 - ✅ Testes de Integração
 - ✅ Swagger
@@ -93,11 +91,16 @@ US's - MVP
     - ✅ [US006-3] Ver Alunos no Curso
 
 US's - EXTRA
-- 🚧 [US00X] Funcionalidades Opcionais
+- ✅ [US00X] Funcionalidades Opcionais
     - ✅ [US00X-1] Swagger
     - ✅ [US00X-2] Tratamento de Exceções
     - ✅ [US00X-3] Testes Unitários
     - ✅ [US00X-4] Testes de Integração
-    - 🚧 [US00X-5] Buscar Aluno por Nome/CPF
-    - 🚧 [US00X-6] Buscar Professor por Nome/CPF
+
+🚧 DÉBITOS TÉCNICOS
+
+- 🚧 [US00X-5] Buscar Aluno por Nome/CPF
+- 🚧 [US00X-6] Buscar Professor por Nome/CPF
+- 🚧 [US00X-7] Buscar Aluno Especifico no Curso
+- 🚧 [US00X-8] Mostrar Idade do Aluno e Professor
     
