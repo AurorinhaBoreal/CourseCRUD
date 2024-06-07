@@ -58,7 +58,7 @@ public class TeacherUnitary {
     @SuppressWarnings("unchecked")
     @Test
     @DisplayName("Happy Test: Teacher Service List Pageable")
-    void listTeachers() {
+    void shouldListTeachersUnitaryT() {
         var listTeachers = mock(Page.class);
         when(teacherRepository.findAll(pageable)).thenReturn(listTeachers);
 
@@ -70,7 +70,7 @@ public class TeacherUnitary {
 
     @Test
     @DisplayName("Happy Test: Teacher Service Create Teacher")
-    void createTeacher() {
+    void shouldCreateTeacherUnitaryT() {
         when(teacherRepository.save(any())).thenReturn(teacherEntityValid);
 
         TeacherResponse createdTeacher = teacherService.create(teacherDTOValid);
@@ -82,7 +82,7 @@ public class TeacherUnitary {
 
     @Test
     @DisplayName("Happy Test: Teacher Service Update Teacher")
-    void updateTeacher() {
+    void shouldUpdateTeacherUnitaryT() {
         when(teacherRepository.findByTeacherId(anyLong())).thenReturn(Optional.of(teacherEntityValid));
         when(teacherRepository.save(teacherEntityValid)).thenReturn(teacherEntityUpdate);
 
@@ -96,7 +96,7 @@ public class TeacherUnitary {
 
     @Test
     @DisplayName("Happy Test: Teacher Service Delete Teacher")
-    void shouldDeleteTeacher() {
+    void shouldDeleteTeacherUnitaryT() {
         when(teacherRepository.findByTeacherId(anyLong())).thenReturn(Optional.of(teacherEntityValid));
         when(teacherRepository.findByCpf(anyString())).thenReturn(Optional.of(teacherEntityValid));
      
@@ -107,7 +107,7 @@ public class TeacherUnitary {
 
     @Test
     @DisplayName("Sad Test: Teacher Service Shouldn't Delete Teacher")
-    void shouldNotDeleteTeacher() {
+    void shouldNotDeleteTeacherUnitaryT() {
     ObjectsDontMatchException thrown = assertThrows(ObjectsDontMatchException.class, () -> {
         when(teacherRepository.findByTeacherId(113L)).thenReturn(Optional.of(teacherEntityUpdate));
         when(teacherRepository.findByCpf("09730461040")).thenReturn(Optional.of(teacherEntityValid));
@@ -120,7 +120,7 @@ public class TeacherUnitary {
 
     @Test
     @DisplayName("Happy Test: Teacher Repository findByCpf")
-    void shouldFindByCpf() {
+    void shouldFindByCpfUnitaryT() {
         when(teacherRepository.findByCpf(teacherDTOValid.cpf())).thenReturn(Optional.of(teacherEntityValid));
 
         Teacher foundTeacher = teacherRepository.findByCpf(teacherDTOValid.cpf()).get();
@@ -130,7 +130,7 @@ public class TeacherUnitary {
 
     @Test
     @DisplayName("Sad Test: Teacher Repository findByTeacherId")
-    void shouldNotFindByEnrollmentId() {
+    void shouldNotFindByEnrollmentIdUnitaryT() {
         NoSuchElementException thrown = assertThrows(NoSuchElementException.class, () -> {
             teacherService.findTeacher(10L);
         });
@@ -140,7 +140,7 @@ public class TeacherUnitary {
 
     @Test
 	@DisplayName("Sad Test: Should thrown DuplicateCpfException in create")
-	void thrownDuplicateCpfException() {
+	void shouldThrownDuplicateCpfExceptionUnitaryT() {
 		DuplicateCpfException thrown = assertThrows(DuplicateCpfException.class, () -> {
 			when(teacherRepository.existsByCpf(anyString())).thenReturn(true);
 
@@ -152,7 +152,7 @@ public class TeacherUnitary {
 
     @Test
     @DisplayName("Happy Test: Teacher Service Verify CPF")
-    void verifyValidCpf() {
+    void shouldVerifyValidCpfUnitaryT() {
         when(teacherRepository.existsByCpf(anyString())).thenReturn(false);
 
         boolean verification = teacherService.verifyCPF(anyString());
@@ -162,7 +162,7 @@ public class TeacherUnitary {
 
     @Test
     @DisplayName("Happy Test: Teacher Service Find Teacher")
-    void findTeacher() {
+    void shouldFindTeacherUnitaryT() {
         when(teacherRepository.findByTeacherId(anyLong())).thenReturn(Optional.of(teacherEntityInvalid));
 
         Teacher teacher = teacherService.findTeacher(anyLong());

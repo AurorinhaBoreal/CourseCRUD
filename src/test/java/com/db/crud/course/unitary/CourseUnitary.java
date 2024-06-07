@@ -71,7 +71,7 @@ public class CourseUnitary {
     @Test
     @DisplayName("Happy Test: Course Service List Pageable")
     @SuppressWarnings("unchecked")
-    void listCourses() {
+    void shouldListCoursesUnitaryC() {
         var listCourses = mock(Page.class);
         when(courseRepository.findAll(pageable)).thenReturn(listCourses);
 
@@ -84,7 +84,7 @@ public class CourseUnitary {
     @Test
     @DisplayName("Happy Test: Course Service List Students Pageable")
     @SuppressWarnings("unchecked")
-    void listStudents() {
+    void shouldListStudentsUnitaryC() {
         var listStudents = mock(Page.class);
         when(courseRepository.findAll(pageable)).thenReturn(listStudents);
 
@@ -96,7 +96,7 @@ public class CourseUnitary {
 
     @Test
     @DisplayName("Happy Test: Course Service Enroll Student in Course")
-    void enrollStudent() {
+    void shouldEnrollStudentUnitaryC() {
         when(courseRepository.findByCourseId(anyLong())).thenReturn(Optional.of(courseEntityValid));
         when(studentRepository.findByEnrollmentId(anyLong())).thenReturn(Optional.of(studentEntityValid));
 
@@ -110,7 +110,7 @@ public class CourseUnitary {
 
     @Test
     @DisplayName("Happy Test: Course Service Create Course")
-    void createCourse() {
+    void shouldCreateCourseUnitaryC() {
         when(courseRepository.save(any())).thenReturn(courseEntityValid);
         when(teacherRepository.findByTeacherId(anyLong())).thenReturn(Optional.of(teacherEntityValid));
 
@@ -122,7 +122,7 @@ public class CourseUnitary {
 
     @Test
     @DisplayName("Happy Test: Course Service Update Course")
-    void ShouldUpdateCourse() {
+    void shouldUpdateCourseUnitaryC() {
         when(courseRepository.findByCourseId(anyLong())).thenReturn(Optional.of(courseEntityValid));
         when(courseRepository.save(courseEntityValid)).thenReturn(courseEntityUpdate);
 
@@ -134,7 +134,7 @@ public class CourseUnitary {
 
     @Test
     @DisplayName("Happy Test: Course Service Delete Course")
-    void shouldDeleteCourse() {
+    void shouldDeleteCourseUnitaryC() {
         when(courseRepository.findByCourseId(anyLong())).thenReturn(Optional.of(courseEntityValid));
      
         Long deleted = courseService.delete(111L, 6);
@@ -144,7 +144,7 @@ public class CourseUnitary {
 
     @Test
     @DisplayName("Sad Test: Course Service Shouldn't Delete Course")
-    void shouldNotDeleteCourse() {
+    void shouldNotDeleteCourseUnitaryC() {
     ObjectsDontMatchException thrown = assertThrows(ObjectsDontMatchException.class, () -> {
         when(courseRepository.findByCourseId(113L)).thenReturn(Optional.of(courseEntityUpdate));
 
@@ -156,7 +156,7 @@ public class CourseUnitary {
 
     @Test
     @DisplayName("Happy Test: Student Service Find Student")
-    void findStudent() {
+    void shouldFindStudentUnitaryC() {
         when(studentRepository.findByEnrollmentId(anyLong())).thenReturn(Optional.of(studentEntityValid));
 
         Student student = studentService.findStudent(anyLong());
