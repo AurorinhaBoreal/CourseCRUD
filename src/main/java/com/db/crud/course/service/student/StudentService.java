@@ -22,9 +22,4 @@ public interface StudentService {
     public Student findStudent(Long enrollmentId);
 
     public boolean verifyCPF(String cpf);
-
-    // TODO: Implement Enroll and Disenroll after Implement Course CRUD
-    // public StudentResponse enroll();
-
-    // public StudentResponse disenroll();
 }

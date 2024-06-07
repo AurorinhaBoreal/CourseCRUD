@@ -34,7 +34,7 @@ public class CourseFixture {
 
     public static Course CourseEntityValid() {
         Course course = CourseMapper.dtoToCourse(CourseDTOValidFixture(), TeacherEntityValid());
-
+        course.setId(1L);
         return course;
     }
     

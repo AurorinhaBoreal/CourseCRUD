@@ -62,9 +62,7 @@ public class Student {
     @Column(name = "parent_number", length = 14)
     private String parentNumber;
 
-    // Vários estudantes podem fazer vários cursos diferentes - ONE TO MANY
-
     @JsonIgnore
     @ManyToMany(mappedBy = "students")
-    private List<Course> courses = new ArrayList<>();
+    private final List<Course> courses = new ArrayList<>();
 }

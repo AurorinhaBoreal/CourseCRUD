@@ -1,5 +1,7 @@
 package com.db.crud.course.dto.mapper;
 
+import java.util.ArrayList;
+
 import org.mapstruct.Mapper;
 
 import com.db.crud.course.dto.request.CourseRequest;
@@ -27,6 +29,7 @@ public interface CourseMapper {
             .teacherId(teacher)
             .name(courseDTO.name())
             .semesters(courseDTO.semesters())
+            .students(new ArrayList<>())
             .build();
     }
 

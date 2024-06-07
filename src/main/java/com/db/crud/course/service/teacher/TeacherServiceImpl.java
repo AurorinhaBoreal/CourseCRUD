@@ -13,6 +13,7 @@ import com.db.crud.course.exception.ObjectsDontMatchException;
 import com.db.crud.course.model.Teacher;
 import com.db.crud.course.repository.TeacherRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -32,6 +33,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    @Transactional
     public TeacherResponse create(TeacherRequest teacherRequestDTO) {
 
         verifyCPF(teacherRequestDTO.cpf());
@@ -42,6 +44,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    @Transactional
     public TeacherResponse update(TeacherRequest teacherRequestDTO, Long teacherId) {
         Teacher originalTeacher = findTeacher(teacherId);
 
@@ -52,6 +55,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    @Transactional
     public Long delete(Long teacherId, String cpf) {
         Teacher teacherOne = findTeacher(teacherId);
         Teacher teacherTwo = teacherRepository.findByCpf(cpf).get();

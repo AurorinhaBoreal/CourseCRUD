@@ -1,6 +1,8 @@
 package com.db.crud.course.unitary;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -23,15 +25,21 @@ import org.springframework.data.domain.Pageable;
 import com.db.crud.course.dto.mapper.CourseMapper;
 import com.db.crud.course.dto.request.CourseRequest;
 import com.db.crud.course.dto.response.CourseResponse;
+import com.db.crud.course.dto.response.CourseStudentResponse;
 import com.db.crud.course.exception.ObjectsDontMatchException;
 import com.db.crud.course.fixture.CourseFixture;
+import com.db.crud.course.fixture.StudentFixture;
 import com.db.crud.course.fixture.TeacherFixture;
 import com.db.crud.course.model.Course;
+import com.db.crud.course.model.Student;
 import com.db.crud.course.model.Teacher;
 import com.db.crud.course.repository.CourseRepository;
+import com.db.crud.course.repository.StudentRepository;
 import com.db.crud.course.repository.TeacherRepository;
 import com.db.crud.course.service.course.CourseService;
 import com.db.crud.course.service.course.CourseServiceImpl;
+import com.db.crud.course.service.student.StudentService;
+import com.db.crud.course.service.student.StudentServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class CourseUnitary {
@@ -40,10 +48,14 @@ public class CourseUnitary {
     @Mock
     TeacherRepository teacherRepository;
     @Mock
+    StudentRepository studentRepository;
+    @Mock
     CourseMapper courseMapper;
 
     @InjectMocks
     private CourseService courseService = new CourseServiceImpl();
+    @InjectMocks 
+    private StudentService studentService = new StudentServiceImpl();
     
     CourseRequest courseDTOValid = CourseFixture.CourseDTOValidFixture();
     CourseRequest courseDTOInvalid = CourseFixture.CourseDTOInvalidFixture();
@@ -52,11 +64,13 @@ public class CourseUnitary {
     Course courseEntityInvalid = CourseFixture.CourseEntityInvalid();
     Course courseEntityUpdate = CourseFixture.CourseEntityUpdate();
     Teacher teacherEntityValid = TeacherFixture.TeacherEntityValid();
+    Student studentEntityValid = StudentFixture.StudentEntityValid();
     Pageable pageable;
 
-    @SuppressWarnings("unchecked")
+    
     @Test
     @DisplayName("Happy Test: Course Service List Pageable")
+    @SuppressWarnings("unchecked")
     void listCourses() {
         var listCourses = mock(Page.class);
         when(courseRepository.findAll(pageable)).thenReturn(listCourses);
@@ -65,6 +79,33 @@ public class CourseUnitary {
 
         verify(courseRepository).findAll(pageable);
         verifyNoMoreInteractions(courseRepository);
+    }
+
+    @Test
+    @DisplayName("Happy Test: Course Service List Students Pageable")
+    @SuppressWarnings("unchecked")
+    void listStudents() {
+        var listStudents = mock(Page.class);
+        when(courseRepository.findAll(pageable)).thenReturn(listStudents);
+
+        listStudents = courseService.listStudents(pageable);
+
+        verify(courseRepository).findAll(pageable);
+        verifyNoMoreInteractions(courseRepository);
+    }
+
+    @Test
+    @DisplayName("Happy Test: Course Service Enroll Student in Course")
+    void enrollStudent() {
+        when(courseRepository.findByCourseId(anyLong())).thenReturn(Optional.of(courseEntityValid));
+        when(studentRepository.findByEnrollmentId(anyLong())).thenReturn(Optional.of(studentEntityValid));
+
+        CourseStudentResponse studentResponse = courseService.enroll(111L, 111L);
+
+        assertNotNull(studentResponse.name());
+        assertEquals(courseEntityValid.getName(), studentResponse.name());
+        assertEquals(courseEntityValid.getCourseId(), studentResponse.courseId());
+        assertFalse(studentResponse.students().isEmpty());
     }
 
     @Test
@@ -81,7 +122,7 @@ public class CourseUnitary {
 
     @Test
     @DisplayName("Happy Test: Course Service Update Course")
-    void updateCourse() {
+    void ShouldUpdateCourse() {
         when(courseRepository.findByCourseId(anyLong())).thenReturn(Optional.of(courseEntityValid));
         when(courseRepository.save(courseEntityValid)).thenReturn(courseEntityUpdate);
 
@@ -111,5 +152,15 @@ public class CourseUnitary {
     });
     
     assertEquals("Objects found through parameters don't match.", thrown.getMessage());
+    }
+
+    @Test
+    @DisplayName("Happy Test: Student Service Find Student")
+    void findStudent() {
+        when(studentRepository.findByEnrollmentId(anyLong())).thenReturn(Optional.of(studentEntityValid));
+
+        Student student = studentService.findStudent(anyLong());
+
+        assertNotNull(student);
     }
 }
