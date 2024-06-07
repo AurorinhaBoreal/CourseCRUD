@@ -49,7 +49,7 @@ public class CourseIntegration {
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = SqlProvider.insertCourse),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = SqlProvider.clearDB)
     })
-    void getCoursePageable() throws Exception {
+    void shouldGetCoursePageableIntegrationC() throws Exception {
         
         mockMvc.perform(MockMvcRequestBuilders.get("/course"))
         .andExpect(status().isOk())
@@ -65,7 +65,7 @@ public class CourseIntegration {
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = SqlProvider.insertCourse),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = SqlProvider.clearDB)
     })
-    void getStudentPageable() throws Exception {
+    void shouldGetStudentPageableIntegrationIntegrationC() throws Exception {
     
         mockMvc.perform(MockMvcRequestBuilders.get("/course/students"))
         .andExpect(status().isOk())
@@ -82,7 +82,7 @@ public class CourseIntegration {
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = SqlProvider.insertCourse),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = SqlProvider.clearDB)
     })
-    void enrollStudent() throws Exception {
+    void shouldEnrollStudentIntegrationC() throws Exception {
     
         Course course = courseRepository.findAll().get(0);
         Student student = studentRepository.findAll().get(0);
@@ -105,7 +105,7 @@ public class CourseIntegration {
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = SqlProvider.insertCourseStudent),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = SqlProvider.clearDB)
     })
-    void disenrollStudent() throws Exception {
+    void shouldDisenrollStudentIntegrationC() throws Exception {
     
         Course course = courseRepository.findAll().get(0);
         Student student = studentRepository.findAll().get(0);
@@ -124,7 +124,7 @@ public class CourseIntegration {
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = SqlProvider.insertTeacher),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = SqlProvider.clearDB)
     })
-    void createCourse() throws Exception {
+    void shouldCreateCourseIntegrationC() throws Exception {
     
         courseDTORequest = CourseFixture.CourseDTOValidFixture();
         json = mapper.writeValueAsString(courseDTORequest);
@@ -142,7 +142,7 @@ public class CourseIntegration {
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = SqlProvider.insertCourse),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = SqlProvider.clearDB)
     })
-    void updateCourse() throws Exception {
+    void shouldUpdateCourseIntegrationC() throws Exception {
     
         courseDTORequest = CourseFixture.CourseDTOValidFixture();
         json = mapper.writeValueAsString(courseDTORequest);
@@ -163,7 +163,7 @@ public class CourseIntegration {
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = SqlProvider.insertCourse),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = SqlProvider.clearDB)
     })
-    void deleteCourse() throws Exception {
+    void shouldDeleteCourseIntegrationC() throws Exception {
     
         Course course = courseRepository.findAll().get(0);
 

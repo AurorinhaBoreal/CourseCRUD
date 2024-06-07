@@ -43,7 +43,7 @@ public class StudentIntegration {
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = SqlProvider.insertStudent),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = SqlProvider.clearDB)
     })
-    void getStudentPageable() throws Exception {
+    void shouldGetStudentPageableIntegrationS() throws Exception {
         
         mockMvc.perform(MockMvcRequestBuilders.get("/student"))
         .andExpect(status().isOk())
@@ -53,7 +53,7 @@ public class StudentIntegration {
 
     @Test
     @DisplayName("Happy Test: Should Create Student")
-    void createStudent() throws Exception {
+    void shouldCreateStudentIntegrationS() throws Exception {
     
         studentDTORequest = StudentFixture.StudentDTOValidFixture();
 
@@ -76,7 +76,7 @@ public class StudentIntegration {
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = SqlProvider.insertStudent),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = SqlProvider.clearDB)
     })
-    void updateStudent() throws Exception {
+    void shouldUpdateStudentIntegrationS() throws Exception {
     
         studentDTORequest = StudentFixture.StudentDTOValidFixture();
 
@@ -99,7 +99,7 @@ public class StudentIntegration {
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = SqlProvider.insertStudent),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = SqlProvider.clearDB)
     })
-    void deleteStudent() throws Exception {
+    void shouldDeleteStudentIntegrationS() throws Exception {
     
         Student student = studentRepository.findAll().get(0);
 

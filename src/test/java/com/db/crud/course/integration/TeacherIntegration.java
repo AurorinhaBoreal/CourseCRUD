@@ -43,7 +43,7 @@ public class TeacherIntegration {
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = SqlProvider.insertTeacher),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = SqlProvider.clearDB)
     })
-    void getTeacherPageable() throws Exception {
+    void shouldGetTeacherPageableIntegrationT() throws Exception {
         
         mockMvc.perform(MockMvcRequestBuilders.get("/teacher"))
         .andExpect(status().isOk())
@@ -53,7 +53,7 @@ public class TeacherIntegration {
 
     @Test
     @DisplayName("Happy Test: Should Create Teacher")
-    void createTeacher() throws Exception {
+    void shouldCreateTeacherIntegrationT() throws Exception {
     
         teacherDTORequest = TeacherFixture.TeacherDTOValidFixture();
 
@@ -75,7 +75,7 @@ public class TeacherIntegration {
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = SqlProvider.insertTeacher),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = SqlProvider.clearDB)
     })
-    void updateTeacher() throws Exception {
+    void shouldUpdateTeacherIntegrationT() throws Exception {
     
         teacherDTORequest = TeacherFixture.TeacherDTOValidFixture();
 
@@ -98,7 +98,7 @@ public class TeacherIntegration {
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = SqlProvider.insertTeacher),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = SqlProvider.clearDB)
     })
-    void deleteTeacher() throws Exception {
+    void shouldDeleteTeacherIntegrationT() throws Exception {
     
         Teacher teacher = teacherRepository.findAll().get(0);
 
