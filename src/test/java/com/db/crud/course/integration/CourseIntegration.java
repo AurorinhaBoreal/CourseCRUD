@@ -87,7 +87,7 @@ public class CourseIntegration {
         Course course = courseRepository.findAll().get(0);
         Student student = studentRepository.findAll().get(0);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/course/enroll/"+course.getCourseId()+"/"+student.getEnrollmentId()))
+        mockMvc.perform(MockMvcRequestBuilders.patch("/course/enroll/"+course.getCourseId()+"/"+student.getEnrollmentId()))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.name").value(course.getName()))
         .andExpect(jsonPath("$.semesters").value(course.getSemesters()))
@@ -110,10 +110,10 @@ public class CourseIntegration {
         Course course = courseRepository.findAll().get(0);
         Student student = studentRepository.findAll().get(0);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/course/enroll/"+course.getCourseId()+"/"+student.getEnrollmentId()))
+        mockMvc.perform(MockMvcRequestBuilders.patch("/course/enroll/"+course.getCourseId()+"/"+student.getEnrollmentId()))
         .andExpect(status().isOk());
 
-        mockMvc.perform(MockMvcRequestBuilders.delete("/course/disenroll/"+course.getCourseId()+"/"+student.getEnrollmentId()))
+        mockMvc.perform(MockMvcRequestBuilders.patch("/course/disenroll/"+course.getCourseId()+"/"+student.getEnrollmentId()))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.students[0]").doesNotExist());
     }
