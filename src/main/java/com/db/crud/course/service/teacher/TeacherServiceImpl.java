@@ -1,5 +1,7 @@
 package com.db.crud.course.service.teacher;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,6 +34,27 @@ public class TeacherServiceImpl implements TeacherService {
         });
     }
 
+    @Override
+    public TeacherResponse specific(String info) {
+        Teacher student = null;
+        if (info.length() == 11)
+            student = teacherRepository.findByCpf(info).get();
+
+        if (student == null) {
+            student = teacherRepository.findByFirstName(info).get();
+        }
+
+        if (student == null) {
+            student = teacherRepository.findByLastName(info).get();
+        }
+
+        if (student == null) {
+            throw new NoSuchElementException("A Student was not found with this info!");
+        }
+
+        return TeacherMapper.teacherToDto(student);
+    }
+    
     @Override
     @Transactional
     public TeacherResponse create(TeacherRequest teacherRequestDTO) {

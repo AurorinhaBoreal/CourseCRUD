@@ -11,6 +11,8 @@ public interface TeacherService {
     
     public Page<Object> list(Pageable pageable);
 
+    public TeacherResponse specific(String info);
+
     public TeacherResponse create(TeacherRequest teacherRequestDTO);
     
     public TeacherResponse update(TeacherRequest teacherRequestDTO, Long teacherId);

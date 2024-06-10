@@ -36,6 +36,12 @@ public class TeacherController {
         return teacherService.list(pageable);
     }
     
+    @GetMapping("/specific/{info}")
+    public ResponseEntity<TeacherResponse> specificStudent(@PathVariable String info) {
+        var body = teacherService.specific(info);
+        return ResponseEntity.status(HttpStatus.OK).body(body);
+    }
+   
     @PostMapping("/create")
     public ResponseEntity<TeacherResponse> create(@RequestBody TeacherRequest teacherRequest) {
         var body = teacherService.create(teacherRequest);
