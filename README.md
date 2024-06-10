@@ -97,10 +97,9 @@ US's - EXTRA
     - ✅ [US00X-3] Testes Unitários
     - ✅ [US00X-4] Testes de Integração
 
-🚧 DÉBITOS TÉCNICOS
+✅ DÉBITOS TÉCNICOS
 
 - ✅ [US00X-5] Buscar Aluno por Nome/CPF
 - ✅ [US00X-6] Buscar Professor por Nome/CPF
-- 🚧 [US00X-7] Buscar Aluno Especifico no Curso
-- 🚧 [US00X-8] Mostrar Idade do Aluno e Professor
+- ✅ [US00X-7] Mostrar Idade do Aluno e Professor
     
