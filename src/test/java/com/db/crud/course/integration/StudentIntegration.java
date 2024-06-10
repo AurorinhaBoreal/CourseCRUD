@@ -38,7 +38,7 @@ public class StudentIntegration {
     String json;
 
     @Test
-    @DisplayName("Happy Test: Should get Studend Pageable")
+    @DisplayName("Happy Test: Should get Student Pageable")
     @SqlGroup({
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = SqlProvider.insertStudent),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = SqlProvider.clearDB)
@@ -49,6 +49,37 @@ public class StudentIntegration {
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.content[1].firstName").value("Fernando"))
         .andExpect(jsonPath("$.content[1].lastName").value("Senna"));
+    }
+
+    @Test
+    @DisplayName("Happy Test: Should get Specific Student")
+    @SqlGroup({
+        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = SqlProvider.insertStudent),
+        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = SqlProvider.clearDB)
+    })
+    void shouldGetSpecificStudentIntegrationS() throws Exception {
+        
+        Student student = studentRepository.findAll().get(0);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/student/specific/"+student.getCpf()))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.firstName").value("Roberta"))
+        .andExpect(jsonPath("$.lastName").value("Pereira"));
+    }
+
+    @Test
+    @DisplayName("Happy Test: Should get Specific Student Age")
+    @SqlGroup({
+        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = SqlProvider.insertStudent),
+        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = SqlProvider.clearDB)
+    })
+    void shouldGetSpecificStudentAgeIntegrationS() throws Exception {
+        
+        Student student = studentRepository.findAll().get(0);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/student/age/"+student.getEnrollmentId()))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.age").value(29));
     }
 
     @Test

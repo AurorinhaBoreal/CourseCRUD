@@ -25,6 +25,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.db.crud.course.dto.mapper.StudentMapper;
 import com.db.crud.course.dto.request.StudentRequest;
+import com.db.crud.course.dto.response.StudentAgeResponse;
 import com.db.crud.course.dto.response.StudentResponse;
 import com.db.crud.course.exception.DuplicateCpfException;
 import com.db.crud.course.exception.ObjectsDontMatchException;
@@ -53,7 +54,6 @@ public class StudentUnitary {
     Student studentEntityUpdate = StudentFixture.StudentEntityUpdate();
     Pageable pageable;
 
-    
     @Test
     @DisplayName("Happy Test: Student Service List Pageable")
     @SuppressWarnings("unchecked")
@@ -65,6 +65,53 @@ public class StudentUnitary {
 
         verify(studentRepository).findAll(pageable);
         verifyNoMoreInteractions(studentRepository);
+    }
+    
+    @Test
+    @DisplayName("Happy Test: Student Service List Specific Student By CPF")
+    void shouldListSpecificStudentCpfUnitaryS() {
+        when(studentRepository.findByCpf(studentDTOValid.cpf())).thenReturn(Optional.of(studentEntityValid));
+
+        StudentResponse studentResponse = studentService.specific(studentDTOValid.cpf());
+    
+        assertNotNull(studentResponse);
+    }
+
+    
+    @Test
+    @DisplayName("Happy Test: Student Service List Specific Student By First Name")
+    void shouldListSpecificStudentFNameUnitaryS() {
+        when(studentRepository.findByFirstName(studentDTOValid.firstName())).thenReturn(Optional.of(studentEntityValid));
+
+        StudentResponse studentResponse = studentService.specific(studentDTOValid.firstName());
+    
+        assertNotNull(studentResponse);
+    }
+
+    @Test
+    @DisplayName("Happy Test: Student Service List Specific Student By Last Name")
+    void shouldListSpecificStudentLNameUnitaryS() {
+        when(studentRepository.findByLastName(studentDTOValid.lastName())).thenReturn(Optional.of(studentEntityValid));
+
+        StudentResponse studentResponse = studentService.specific(studentDTOValid.lastName());
+    
+        assertNotNull(studentResponse);
+    }
+
+    @Test
+    @DisplayName("Happy Test: Student Service Get Age of Student")
+    void shouldGetAgeOfStudentUnitaryS() {
+        when(studentRepository.findByEnrollmentId(anyLong())).thenReturn(Optional.of(studentEntityValid));
+
+        StudentAgeResponse response = studentService.getAge(studentDTOValid.enrollmentId());
+
+        assertNotNull(response.age());
+    }
+
+    @Test
+    @DisplayName("Happy Test:")
+    void test() {
+    
     }
 
     @Test
