@@ -50,6 +50,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    @Transactional
     public CourseStudentResponse enroll(Long courseId, Long studentId) {
         Course courseFound = findCourse(courseId);
         Student studentFound = findStudent(studentId);
@@ -76,11 +77,11 @@ public class CourseServiceImpl implements CourseService {
         CourseStudentResponse studentResponse = CourseMapper.courseStudent(courseFound);
         courseRepository.save(courseFound);
 
-
         return studentResponse;
     }
 
     @Override
+    @Transactional
     public CourseResponse create(CourseRequest courseRequestDTO) {
 
         Teacher teacher = verifyTeacher(courseRequestDTO);
@@ -92,6 +93,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    @Transactional
     public CourseResponse update(CourseRequest courseRequestDTO, Long courseId) {
         Course originalCourse = findCourse(courseId);
 
@@ -102,6 +104,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    @Transactional
     public Long delete(Long courseId, Integer courseDuration) {
         Course course = findCourse(courseId);
 
@@ -126,6 +129,7 @@ public class CourseServiceImpl implements CourseService {
 
         return studentFounded;
     }
+  
     public Teacher verifyTeacher(CourseRequest courseRequest) {
         Teacher teacherFound = teacherRepository.findByTeacherId(courseRequest.teacherId()).get();
         return teacherFound;

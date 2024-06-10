@@ -25,6 +25,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.db.crud.course.dto.mapper.StudentMapper;
 import com.db.crud.course.dto.request.StudentRequest;
+import com.db.crud.course.dto.response.StudentAgeResponse;
 import com.db.crud.course.dto.response.StudentResponse;
 import com.db.crud.course.exception.DuplicateCpfException;
 import com.db.crud.course.exception.ObjectsDontMatchException;
@@ -53,10 +54,10 @@ public class StudentUnitary {
     Student studentEntityUpdate = StudentFixture.StudentEntityUpdate();
     Pageable pageable;
 
-    @SuppressWarnings("unchecked")
     @Test
     @DisplayName("Happy Test: Student Service List Pageable")
-    void listStudent() {
+    @SuppressWarnings("unchecked")
+    void shouldListStudentUnitaryS() {
         var listStudents = mock(Page.class);
         when(studentRepository.findAll(pageable)).thenReturn(listStudents);
 
@@ -65,10 +66,56 @@ public class StudentUnitary {
         verify(studentRepository).findAll(pageable);
         verifyNoMoreInteractions(studentRepository);
     }
+    
+    @Test
+    @DisplayName("Happy Test: Student Service List Specific Student By CPF")
+    void shouldListSpecificStudentCpfUnitaryS() {
+        when(studentRepository.findByCpf(studentDTOValid.cpf())).thenReturn(Optional.of(studentEntityValid));
+
+        StudentResponse studentResponse = studentService.specific(studentDTOValid.cpf(), "cpf");
+    
+        assertNotNull(studentResponse);
+    }
+
+    @Test
+    @DisplayName("Happy Test: Student Service List Specific Student By First Name")
+    void shouldListSpecificStudentFNameUnitaryS() {
+        when(studentRepository.findByFirstName(studentDTOValid.firstName())).thenReturn(Optional.of(studentEntityValid));
+
+        StudentResponse studentResponse = studentService.specific(studentDTOValid.firstName(), "fn");
+    
+        assertNotNull(studentResponse);
+    }
+
+    @Test
+    @DisplayName("Happy Test: Student Service List Specific Student By Last Name")
+    void shouldListSpecificStudentLNameUnitaryS() {
+        when(studentRepository.findByLastName(studentDTOValid.lastName())).thenReturn(Optional.of(studentEntityValid));
+
+        StudentResponse studentResponse = studentService.specific(studentDTOValid.lastName(), "ln");
+    
+        assertNotNull(studentResponse);
+    }
+
+    @Test
+    @DisplayName("Happy Test: Student Service Get Age of Student")
+    void shouldGetAgeOfStudentUnitaryS() {
+        when(studentRepository.findByEnrollmentId(anyLong())).thenReturn(Optional.of(studentEntityValid));
+
+        StudentAgeResponse response = studentService.getAge(studentDTOValid.enrollmentId());
+
+        assertNotNull(response.age());
+    }
+
+    @Test
+    @DisplayName("Happy Test:")
+    void test() {
+    
+    }
 
     @Test
     @DisplayName("Happy Test: Student Service Create Student")
-    void createStudent() {
+    void shouldCreateStudentUnitaryS() {
         when(studentRepository.save(any())).thenReturn(studentEntityValid);
 
         StudentResponse createdStudent = studentService.create(studentDTOValid);
@@ -83,7 +130,7 @@ public class StudentUnitary {
 
     @Test
     @DisplayName("Happy Test: Student Service Update Student")
-    void updateStudent() {
+    void shouldUpdateStudentUnitaryS() {
         when(studentRepository.findByEnrollmentId(anyLong())).thenReturn(Optional.of(studentEntityValid));
         when(studentRepository.save(studentEntityValid)).thenReturn(studentEntityUpdate);
 
@@ -98,7 +145,7 @@ public class StudentUnitary {
 
     @Test
     @DisplayName("Happy Test: Student Service Delete Student")
-    void shouldDeleteStudent() {
+    void shouldDeleteStudentUnitaryS() {
         when(studentRepository.findByEnrollmentId(anyLong())).thenReturn(Optional.of(studentEntityValid));
         when(studentRepository.findByCpf(anyString())).thenReturn(Optional.of(studentEntityValid));
      
@@ -109,7 +156,7 @@ public class StudentUnitary {
 
     @Test
     @DisplayName("Sad Test: Student Service Shouldn't Delete Student")
-    void shouldNotDeleteStudent() {
+    void shouldNotDeleteStudentUnitaryS() {
     ObjectsDontMatchException thrown = assertThrows(ObjectsDontMatchException.class, () -> {
         when(studentRepository.findByEnrollmentId(113L)).thenReturn(Optional.of(studentEntityUpdate));
         when(studentRepository.findByCpf("09730461040")).thenReturn(Optional.of(studentEntityValid));
@@ -122,7 +169,7 @@ public class StudentUnitary {
 
     @Test
     @DisplayName("Happy Test: Student Repository findByCpf")
-    void shouldFindByCpf() {
+    void shouldFindByCpfUnitaryS() {
         when(studentRepository.findByCpf(studentDTOValid.cpf())).thenReturn(Optional.of(studentEntityValid));
 
         Student foundStudent = studentRepository.findByCpf(studentDTOValid.cpf()).get();
@@ -132,7 +179,7 @@ public class StudentUnitary {
 
     @Test
     @DisplayName("Sad Test: Student Repository findByEnrollmentId")
-    void shouldNotFindByEnrollmentId() {
+    void shouldNotFindByEnrollmentIdUnitaryS() {
         NoSuchElementException thrown = assertThrows(NoSuchElementException.class, () -> {
             studentService.findStudent(10L);
         });
@@ -142,7 +189,7 @@ public class StudentUnitary {
 
     @Test
 	@DisplayName("Sad Test: Should thrown DuplicateCpfException in create")
-	void thrownDuplicateCpfException() {
+	void shouldThrownDuplicateCpfExceptionUnitaryS() {
 		DuplicateCpfException thrown = assertThrows(DuplicateCpfException.class, () -> {
 			when(studentRepository.existsByCpf(anyString())).thenReturn(true);
 
@@ -154,7 +201,7 @@ public class StudentUnitary {
 
     @Test
     @DisplayName("Happy Test: Student Service Verify CPF")
-    void verifyValidCpf() {
+    void shouldVerifyValidCpfUnitaryS() {
         when(studentRepository.existsByCpf(anyString())).thenReturn(false);
 
         boolean verification = studentService.verifyCPF(anyString());
@@ -164,7 +211,7 @@ public class StudentUnitary {
 
     @Test
     @DisplayName("Happy Test: Student Service Find Student")
-    void findStudent() {
+    void shouldFindStudentUnitaryS() {
         when(studentRepository.findByEnrollmentId(anyLong())).thenReturn(Optional.of(studentEntityInvalid));
 
         Student student = studentService.findStudent(anyLong());

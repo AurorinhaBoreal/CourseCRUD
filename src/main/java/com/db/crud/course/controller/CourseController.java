@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -39,21 +40,19 @@ public class CourseController {
         return courseService.listStudents(pageable);
     }    
 
-    @PostMapping("/enroll/{courseId}/{studentId}")
+    @PatchMapping("/enroll/{courseId}/{studentId}")
     public ResponseEntity<CourseStudentResponse> enrollStudent(@PathVariable Long courseId, @PathVariable Long studentId) {
         var body = courseService.enroll(courseId, studentId);
         
         return ResponseEntity.status(HttpStatus.OK).body(body);
     }
 
-    @DeleteMapping("/disenroll/{courseId}/{studentId}")
+    @PatchMapping("/disenroll/{courseId}/{studentId}")
     public ResponseEntity<CourseStudentResponse> disenrollStudent(@PathVariable Long courseId, @PathVariable Long studentId) {
         var body = courseService.disenroll(courseId, studentId);
         
         return ResponseEntity.status(HttpStatus.OK).body(body);
     }
-
-    
 
     @PostMapping("/create")
     public ResponseEntity<CourseResponse> create(@RequestBody CourseRequest courseRequest) {

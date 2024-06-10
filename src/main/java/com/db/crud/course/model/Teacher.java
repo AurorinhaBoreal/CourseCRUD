@@ -59,12 +59,9 @@ public class Teacher {
     @JsonIgnore
     private String cpf;
 
-    // Um professor para varios cursos - ONE TO MANY
-    // Por essa Entidade ter o "mappedBy", ela vai ser a filha da relação
-    // Ou seja, quem vai gerenciar a chave estrangeira será a Entidade curso
     @OneToMany(mappedBy = "teacherId")
     @JsonManagedReference
     @JsonIgnore
     @Valid
-    private List<Course> courses = new ArrayList<>();
+    private final List<Course> courses = new ArrayList<>();
 }

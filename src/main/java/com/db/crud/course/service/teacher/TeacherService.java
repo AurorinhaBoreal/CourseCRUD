@@ -4,12 +4,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.db.crud.course.dto.request.TeacherRequest;
+import com.db.crud.course.dto.response.TeacherAgeResponse;
 import com.db.crud.course.dto.response.TeacherResponse;
 import com.db.crud.course.model.Teacher;
 
 public interface TeacherService {
     
     public Page<Object> list(Pageable pageable);
+
+    public TeacherResponse specific(String info, String searchType);
+
+    public TeacherAgeResponse getAge(Long teacherId);
 
     public TeacherResponse create(TeacherRequest teacherRequestDTO);
     

@@ -9,15 +9,36 @@ import com.db.crud.course.model.Teacher;
 public class TeacherFixture {
     
     public static TeacherRequest TeacherDTOValidFixture() {
-        return new TeacherRequest(111L, "Pedrro", "Lost", LocalDate.of(1995, 02, 24), "11954672398", "09730461040");
+        return TeacherRequest.builder()
+            .teacherId(111L)
+            .firstName("Pedrro")
+            .lastName("Lost")
+            .birthDate(LocalDate.of(1995, 02, 24))
+            .cpf("09730461040")
+            .phoneNumber("11954672398")
+            .build();
     }
 
     public static TeacherRequest TeacherDTOUpdateFixture() {
-        return new TeacherRequest(113L, "Pedror", "Los", LocalDate.of(1995, 02, 24), "11954672398", "00568495080");
+        return TeacherRequest.builder()
+                .teacherId(113L)
+                .firstName("Pedror")
+                .lastName("Los")
+                .birthDate(LocalDate.of(1995, 2, 24))
+                .cpf("568495080")
+                .phoneNumber("11954672398")
+                .build();
     }
 
     public static TeacherRequest TeacherDTOInvalidFixture() {
-        return new TeacherRequest(112L, null, null, LocalDate.of(1995, 02, 24), null, null);
+        return TeacherRequest.builder()
+                .teacherId(112L)
+                .firstName(null)
+                .lastName(null)
+                .birthDate(LocalDate.of(1995, 2, 24))
+                .cpf(null)
+                .phoneNumber(null)
+                .build();
     }
 
     public static Teacher TeacherEntityValid() {
