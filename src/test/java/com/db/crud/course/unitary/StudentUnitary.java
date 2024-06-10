@@ -72,18 +72,17 @@ public class StudentUnitary {
     void shouldListSpecificStudentCpfUnitaryS() {
         when(studentRepository.findByCpf(studentDTOValid.cpf())).thenReturn(Optional.of(studentEntityValid));
 
-        StudentResponse studentResponse = studentService.specific(studentDTOValid.cpf());
+        StudentResponse studentResponse = studentService.specific(studentDTOValid.cpf(), "cpf");
     
         assertNotNull(studentResponse);
     }
 
-    
     @Test
     @DisplayName("Happy Test: Student Service List Specific Student By First Name")
     void shouldListSpecificStudentFNameUnitaryS() {
         when(studentRepository.findByFirstName(studentDTOValid.firstName())).thenReturn(Optional.of(studentEntityValid));
 
-        StudentResponse studentResponse = studentService.specific(studentDTOValid.firstName());
+        StudentResponse studentResponse = studentService.specific(studentDTOValid.firstName(), "fn");
     
         assertNotNull(studentResponse);
     }
@@ -93,7 +92,7 @@ public class StudentUnitary {
     void shouldListSpecificStudentLNameUnitaryS() {
         when(studentRepository.findByLastName(studentDTOValid.lastName())).thenReturn(Optional.of(studentEntityValid));
 
-        StudentResponse studentResponse = studentService.specific(studentDTOValid.lastName());
+        StudentResponse studentResponse = studentService.specific(studentDTOValid.lastName(), "ln");
     
         assertNotNull(studentResponse);
     }

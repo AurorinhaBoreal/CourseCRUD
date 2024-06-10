@@ -61,7 +61,7 @@ public class StudentIntegration {
         
         Student student = studentRepository.findAll().get(0);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/student/specific/"+student.getCpf()))
+        mockMvc.perform(MockMvcRequestBuilders.get("/student/specific/"+student.getCpf()+"/cpf"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.firstName").value("Roberta"))
         .andExpect(jsonPath("$.lastName").value("Pereira"));
