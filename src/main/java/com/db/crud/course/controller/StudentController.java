@@ -36,9 +36,9 @@ public class StudentController {
         return studentService.list(pageable);
     }
 
-    @GetMapping("/specific/{info}")
-    public ResponseEntity<StudentResponse> specificStudent(@PathVariable String info) {
-        var body = studentService.specific(info);
+    @GetMapping("/specific/{info}/{searchType}")
+    public ResponseEntity<StudentResponse> specificStudent(@PathVariable String info, @PathVariable String searchType) {
+        var body = studentService.specific(info, searchType);
         return ResponseEntity.status(HttpStatus.OK).body(body);
     }
 
