@@ -74,7 +74,7 @@ public class TeacherUnitary {
     void shouldListSpecificTeacherCpfUnitaryT() {
         when(teacherRepository.findByCpf(teacherDTOValid.cpf())).thenReturn(Optional.of(teacherEntityValid));
 
-        TeacherResponse teacherResponse = teacherService.specific(teacherDTOValid.cpf());
+        TeacherResponse teacherResponse = teacherService.specific(teacherDTOValid.cpf(), "cpf");
     
         assertNotNull(teacherResponse);
     }
@@ -85,7 +85,17 @@ public class TeacherUnitary {
     void shouldListSpecificTeacherFNameUnitaryS() {
         when(teacherRepository.findByFirstName(teacherDTOValid.firstName())).thenReturn(Optional.of(teacherEntityValid));
 
-        TeacherResponse teacherResponse = teacherService.specific(teacherDTOValid.firstName());
+        TeacherResponse teacherResponse = teacherService.specific(teacherDTOValid.firstName(), "fn");
+    
+        assertNotNull(teacherResponse);
+    }
+
+    @Test
+    @DisplayName("Happy Test: Teacher Service List Specific Teacher By First Name")
+    void shouldListSpecificTeacherLNameUnitaryS() {
+        when(teacherRepository.findByLastName(teacherDTOValid.lastName())).thenReturn(Optional.of(teacherEntityValid));
+
+        TeacherResponse teacherResponse = teacherService.specific(teacherDTOValid.lastName(), "ln");
     
         assertNotNull(teacherResponse);
     }

@@ -61,7 +61,7 @@ public class TeacherIntegration {
         
         Teacher teacher = teacherRepository.findAll().get(0);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/teacher/specific/"+teacher.getCpf()))
+        mockMvc.perform(MockMvcRequestBuilders.get("/teacher/specific/"+teacher.getCpf()+"/cpf"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.firstName").value("Julio"))
         .andExpect(jsonPath("$.lastName").value("Costa"));
