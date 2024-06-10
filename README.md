@@ -30,15 +30,6 @@
         |-model             # Aonde as estruturas das entidades são armazenadas para serem criadas no banco
         |-repository        # Envia as query de inserção de dados para o banco
         |-service           # Organiza e faz a validação dos dados
-    
-## 📄 Entities
-    COURSE
-
-
-    TEACHER
-
-
-    STUDENT
 
 ## Minimum Viable Product
 - ✅ Container Docker
@@ -49,7 +40,6 @@
 - ✅ Relacionar Curso e Professor (n:1)
 - ✅ Relacionar Curso e Aluno (n:n)
 - ✅ Listar Professor, Aluno e Curso
-- 🚧 Buscar Aluno no Curso
 - ✅ Criar Aluno
 - ✅ Atualizar Aluno
 - ✅ Excluir Aluno
@@ -63,13 +53,12 @@
 - ✅ Excluir Curso
 - ✅ Ver Alunos do Curso
 - ✅ Ver Cursos
-- 🚧 Validações
+- ✅ Validações
 - ✅ Testes Unitários
  
 -> EXTRAS:
-- 🚧 Mostrar Idade do Aluno e Professor
 - ✅ Tratamento de Exceções
-- 🚧 Testes de Integração
+- ✅ Testes de Integração
 - ✅ Swagger
 - ✅ Paginação de Curso
  
@@ -102,21 +91,15 @@ US's - MVP
     - ✅ [US006-3] Ver Alunos no Curso
 
 US's - EXTRA
-- 🚧 [US00X] Funcionalidades Opcionais
+- ✅ [US00X] Funcionalidades Opcionais
     - ✅ [US00X-1] Swagger
     - ✅ [US00X-2] Tratamento de Exceções
     - ✅ [US00X-3] Testes Unitários
-    - 🚧 [US00X-4] Testes de Integração
-    - 🚧 [US00X-5] Buscar Aluno por Nome/CPF
-    - 🚧 [US00X-6] Buscar Professor por Nome/CPF
+    - ✅ [US00X-4] Testes de Integração
+
+✅ DÉBITOS TÉCNICOS
+
+- ✅ [US00X-5] Buscar Aluno por Nome/CPF
+- ✅ [US00X-6] Buscar Professor por Nome/CPF
+- ✅ [US00X-7] Mostrar Idade do Aluno e Professor
     
- 
-- CONTROLLERS:
-
-    TEACHER
-
-
-    STUDENT
-    
-
-    COURSE

@@ -9,15 +9,40 @@ import com.db.crud.course.model.Student;
 public class StudentFixture {
     
     public static StudentRequest StudentDTOValidFixture() {
-        return new StudentRequest(111L, "Aurora", "Kruschewsky", 7, LocalDate.of(2004, 05, 14), "09730461040", "Geisa Kruschewsky", "11974356085");
+        return StudentRequest.builder()
+            .enrollmentId(111L)
+            .firstName("Aurora")
+            .lastName("Kruschewsky")
+            .semester(7)
+            .birthDate(LocalDate.of(2004, 05, 14))
+            .cpf("09730461040")
+            .parentName("Geisa Kruschewsky")
+            .parentNumber("11974356085")
+            .build();
     }
 
     public static StudentRequest StudentDTOUpdateFixture() {
-        return new StudentRequest(113L, "Madame", "Bonita", 8, LocalDate.of(2010, 07, 23), "72295193060", "Roberta Vasco", "21975437543");
+        return StudentRequest.builder()
+            .enrollmentId(113L)
+            .firstName("Madame") 
+            .lastName("Bonita")
+            .semester(8)
+            .birthDate(LocalDate.of(2010, 07, 23))
+            .cpf("72295193060") 
+            .parentName("Roberta Vasco")
+            .parentNumber("21975437543")
+            .build();
     }
 
     public static StudentRequest StudentDTOInvalidFixture() {
-        return new StudentRequest(112L, null, null, null, LocalDate.of(2000, 10, 02), null, null, null);
+        return StudentRequest.builder()
+                .enrollmentId(112L)
+                .firstName(null)
+                .lastName(null)
+                .birthDate(LocalDate.of(2000, 10, 2))
+                .parentName(null)
+                .parentNumber(null)
+                .build();
     }
 
     public static Student StudentEntityValid() {

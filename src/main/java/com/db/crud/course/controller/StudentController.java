@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.db.crud.course.dto.request.StudentRequest;
+import com.db.crud.course.dto.response.StudentAgeResponse;
 import com.db.crud.course.dto.response.StudentResponse;
 import com.db.crud.course.service.student.StudentService;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 
@@ -33,6 +35,19 @@ public class StudentController {
     public Page<Object> listPageable(@PageableDefault(size = 3, sort = {"firstName"}) Pageable pageable) {
         return studentService.list(pageable);
     }
+
+    @GetMapping("/specific/{info}/{searchType}")
+    public ResponseEntity<StudentResponse> specificStudent(@PathVariable String info, @PathVariable String searchType) {
+        var body = studentService.specific(info, searchType);
+        return ResponseEntity.status(HttpStatus.OK).body(body);
+    }
+
+    @GetMapping("/age/{enrollmentId}")
+    public ResponseEntity<StudentAgeResponse> getAge(@PathVariable Long enrollmentId) {
+        var body = studentService.getAge(enrollmentId);
+        return ResponseEntity.status(HttpStatus.OK).body(body);
+    }
+    
 
     @PostMapping("/create")
     public ResponseEntity<StudentResponse> create(@RequestBody StudentRequest studentRequest) {

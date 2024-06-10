@@ -1,5 +1,9 @@
 package com.db.crud.course.service.student;
 
+import java.util.NoSuchElementException;
+import java.time.LocalDate;
+import java.time.Period;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
@@ -7,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.db.crud.course.dto.mapper.StudentMapper;
 import com.db.crud.course.dto.request.StudentRequest;
+import com.db.crud.course.dto.response.StudentAgeResponse;
 import com.db.crud.course.dto.response.StudentResponse;
 import com.db.crud.course.exception.DuplicateCpfException;
 import com.db.crud.course.exception.ObjectsDontMatchException;
@@ -30,6 +35,34 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAll(pageable).map(student -> {
             return StudentMapper.studentToDto(student);
         });
+    }
+
+    @Override
+    public StudentResponse specific(String info, String searchType) {
+        Student student = null;
+        switch (searchType) {
+            case "cpf":
+                student = studentRepository.findByCpf(info).get();
+                break;
+            case "fn":
+                student = studentRepository.findByFirstName(info).get();
+                break;
+            case "ln":
+                student = studentRepository.findByLastName(info).get();
+                break;
+            default:
+                throw new NoSuchElementException();
+        }
+        return StudentMapper.studentToDto(student);
+    }
+
+    @Override
+    public StudentAgeResponse getAge(Long enrollmentId) {
+        Student student = findStudent(enrollmentId);
+
+        Integer age = calcAge(student.getBirthDate());
+
+        return StudentMapper.studentToAgeDto(student, age);
     }
 
     @Override
@@ -82,5 +115,11 @@ public class StudentServiceImpl implements StudentService {
             throw new DuplicateCpfException("This cpf already is registered. CPF: "+cpf);
         }
         return false;
+    }
+
+    public Integer calcAge(LocalDate birthDate) {
+        LocalDate currentDate = LocalDate.now();
+        Integer age = Period.between(birthDate, currentDate).getYears();
+        return age;
     }
 }

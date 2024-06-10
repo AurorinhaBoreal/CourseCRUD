@@ -3,6 +3,7 @@ package com.db.crud.course.dto.mapper;
 import org.mapstruct.Mapper;
 
 import com.db.crud.course.dto.request.StudentRequest;
+import com.db.crud.course.dto.response.StudentAgeResponse;
 import com.db.crud.course.dto.response.StudentResponse;
 import com.db.crud.course.model.Student;
 
@@ -46,5 +47,15 @@ public interface StudentMapper {
         originalStudent.setParentNumber(updateStudent.parentNumber());
         
         return originalStudent;
+    }
+
+    static StudentAgeResponse studentToAgeDto(Student student, Integer age) {
+        return StudentAgeResponse.builder()
+            .enrollmentId(student.getEnrollmentId())
+            .firstName(student.getFirstName())
+            .lastName(student.getLastName())
+            .birthDate(student.getBirthDate())
+            .age(age)
+            .build();
     }
 }

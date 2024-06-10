@@ -6,7 +6,9 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 
+@Builder
 public record StudentRequest(
 
     @NotBlank(message = "Inform a enrollment Id!")
