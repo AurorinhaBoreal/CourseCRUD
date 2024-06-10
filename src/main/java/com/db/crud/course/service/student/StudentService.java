@@ -13,6 +13,8 @@ public interface StudentService {
 
     public Page<Object> list(Pageable pageable);
 
+    public StudentResponse specific(String info);
+
     public StudentResponse create(StudentRequest studentRequestDTO);
     
     public StudentResponse update(StudentRequest studentRequestDTO, Long enrollmentId);

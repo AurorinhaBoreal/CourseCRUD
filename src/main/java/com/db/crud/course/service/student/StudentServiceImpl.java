@@ -12,6 +12,7 @@ import com.db.crud.course.exception.DuplicateCpfException;
 import com.db.crud.course.exception.ObjectsDontMatchException;
 import com.db.crud.course.model.Student;
 import com.db.crud.course.repository.StudentRepository;
+import java.util.NoSuchElementException;
 
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,27 @@ public class StudentServiceImpl implements StudentService {
         });
     }
 
+    @Override
+    public StudentResponse specific(String info) {
+        Student student = null;
+        if (info.length() == 11)
+            student = studentRepository.findByCpf(info).get();
+
+        if (student == null) {
+            student = studentRepository.findByFirstName(info).get();
+        }
+
+        if (student == null) {
+            student = studentRepository.findByLastName(info).get();
+        }
+
+        if (student == null) {
+            throw new NoSuchElementException("A Student was not found with this info!");
+        }
+
+        return StudentMapper.studentToDto(student);
+    }
+    
     @Override
     @Transactional
     public StudentResponse create(StudentRequest studentRequestDTO) {
