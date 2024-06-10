@@ -26,6 +26,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.db.crud.course.dto.mapper.TeacherMapper;
 import com.db.crud.course.dto.request.TeacherRequest;
+import com.db.crud.course.dto.response.TeacherAgeResponse;
 import com.db.crud.course.dto.response.TeacherResponse;
 import com.db.crud.course.exception.DuplicateCpfException;
 import com.db.crud.course.exception.ObjectsDontMatchException;
@@ -66,6 +67,37 @@ public class TeacherUnitary {
 
         verify(teacherRepository).findAll(pageable);
         verifyNoMoreInteractions(teacherRepository);
+    }
+
+    @Test
+    @DisplayName("Happy Test: Teacher Service List Specific Teacher By CPF")
+    void shouldListSpecificTeacherCpfUnitaryT() {
+        when(teacherRepository.findByCpf(teacherDTOValid.cpf())).thenReturn(Optional.of(teacherEntityValid));
+
+        TeacherResponse teacherResponse = teacherService.specific(teacherDTOValid.cpf());
+    
+        assertNotNull(teacherResponse);
+    }
+
+    
+    @Test
+    @DisplayName("Happy Test: Teacher Service List Specific Teacher By First Name")
+    void shouldListSpecificTeacherFNameUnitaryS() {
+        when(teacherRepository.findByFirstName(teacherDTOValid.firstName())).thenReturn(Optional.of(teacherEntityValid));
+
+        TeacherResponse teacherResponse = teacherService.specific(teacherDTOValid.firstName());
+    
+        assertNotNull(teacherResponse);
+    }
+
+    @Test
+    @DisplayName("Happy Test: Teacher Service Get Age of Teacher")
+    void shouldGetAgeOfTeacherUnitaryT() {
+        when(teacherRepository.findByTeacherId(anyLong())).thenReturn(Optional.of(teacherEntityValid));
+
+        TeacherAgeResponse response = teacherService.getAge(teacherDTOValid.teacherId());
+
+        assertNotNull(response.age());
     }
 
     @Test

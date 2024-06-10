@@ -52,6 +52,37 @@ public class TeacherIntegration {
     }
 
     @Test
+    @DisplayName("Happy Test: Should get Specific Teacher")
+    @SqlGroup({
+        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = SqlProvider.insertTeacher),
+        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = SqlProvider.clearDB)
+    })
+    void shouldGetSpecificTeacherIntegrationT() throws Exception {
+        
+        Teacher teacher = teacherRepository.findAll().get(0);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/teacher/specific/"+teacher.getCpf()))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.firstName").value("Julio"))
+        .andExpect(jsonPath("$.lastName").value("Costa"));
+    }
+
+    @Test
+    @DisplayName("Happy Test: Should get Specific Teacher Age")
+    @SqlGroup({
+        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = SqlProvider.insertTeacher),
+        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = SqlProvider.clearDB)
+    })
+    void shouldGetSpecificTeacherAgeIntegrationT() throws Exception {
+        
+        Teacher teacher = teacherRepository.findAll().get(0);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/teacher/age/"+teacher.getTeacherId()))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.age").value(29));
+    }
+
+    @Test
     @DisplayName("Happy Test: Should Create Teacher")
     void shouldCreateTeacherIntegrationT() throws Exception {
     
