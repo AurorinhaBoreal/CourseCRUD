@@ -12,7 +12,7 @@ public interface TeacherService {
     
     public Page<Object> list(Pageable pageable);
 
-    public TeacherResponse specific(String info);
+    public TeacherResponse specific(String info, String searchType);
 
     public TeacherAgeResponse getAge(Long teacherId);
 

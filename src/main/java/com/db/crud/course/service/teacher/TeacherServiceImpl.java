@@ -1,5 +1,6 @@
 package com.db.crud.course.service.teacher;
 
+import java.util.NoSuchElementException;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -37,20 +38,23 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public TeacherResponse specific(String info) {
-        Teacher student = null;
-        if (info.length() == 11)
-            student = teacherRepository.findByCpf(info).get();
-
-        if (student == null) {
-            student = teacherRepository.findByFirstName(info).get();
+    public TeacherResponse specific(String info, String searchType) {
+        Teacher teacher = null;
+        switch (searchType) {
+            case "cpf":
+                teacher = teacherRepository.findByCpf(info).get();
+                break;
+            case "fn":
+                teacher = teacherRepository.findByFirstName(info).get();
+                break;
+            case "ln":
+                teacher = teacherRepository.findByLastName(info).get();
+                break;
+            default:
+                throw new NoSuchElementException();
         }
 
-        if (student == null) {
-            student = teacherRepository.findByLastName(info).get();
-        }
-
-        return TeacherMapper.teacherToDto(student);
+        return TeacherMapper.teacherToDto(teacher);
     }
 
     @Override

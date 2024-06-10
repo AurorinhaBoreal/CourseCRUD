@@ -37,9 +37,9 @@ public class TeacherController {
         return teacherService.list(pageable);
     }
     
-    @GetMapping("/specific/{info}")
-    public ResponseEntity<TeacherResponse> specificStudent(@PathVariable String info) {
-        var body = teacherService.specific(info);
+    @GetMapping("/specific/{info}/{searchType}")
+    public ResponseEntity<TeacherResponse> specificStudent(@PathVariable String info, @PathVariable String searchType) {
+        var body = teacherService.specific(info, searchType);
         return ResponseEntity.status(HttpStatus.OK).body(body);
     }
 
