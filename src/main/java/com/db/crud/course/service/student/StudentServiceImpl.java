@@ -47,13 +47,9 @@ public class StudentServiceImpl implements StudentService {
             student = studentRepository.findByLastName(info).get();
         }
 
-        if (student == null) {
-            throw new NoSuchElementException("A Student was not found with this info!");
-        }
-
         return StudentMapper.studentToDto(student);
     }
-    
+
     @Override
     @Transactional
     public StudentResponse create(StudentRequest studentRequestDTO) {

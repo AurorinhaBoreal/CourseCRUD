@@ -47,11 +47,7 @@ public class TeacherServiceImpl implements TeacherService {
         if (student == null) {
             student = teacherRepository.findByLastName(info).get();
         }
-
-        if (student == null) {
-            throw new NoSuchElementException("A Student was not found with this info!");
-        }
-
+        
         return TeacherMapper.teacherToDto(student);
     }
     
