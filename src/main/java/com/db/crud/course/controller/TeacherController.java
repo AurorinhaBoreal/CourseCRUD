@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.db.crud.course.dto.request.TeacherRequest;
+import com.db.crud.course.dto.response.TeacherAgeResponse;
 import com.db.crud.course.dto.response.TeacherResponse;
 import com.db.crud.course.service.teacher.TeacherService;
 
@@ -39,6 +40,12 @@ public class TeacherController {
     @GetMapping("/specific/{info}")
     public ResponseEntity<TeacherResponse> specificStudent(@PathVariable String info) {
         var body = teacherService.specific(info);
+        return ResponseEntity.status(HttpStatus.OK).body(body);
+    }
+
+    @GetMapping("/age/{teacherId}")
+    public ResponseEntity<TeacherAgeResponse> getAge(@PathVariable Long teacherId) {
+        var body = teacherService.getAge(teacherId);
         return ResponseEntity.status(HttpStatus.OK).body(body);
     }
    

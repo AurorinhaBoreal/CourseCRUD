@@ -1,6 +1,7 @@
 package com.db.crud.course.service.teacher;
 
-import java.util.NoSuchElementException;
+import java.time.LocalDate;
+import java.time.Period;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.db.crud.course.dto.mapper.TeacherMapper;
 import com.db.crud.course.dto.request.TeacherRequest;
+import com.db.crud.course.dto.response.TeacherAgeResponse;
 import com.db.crud.course.dto.response.TeacherResponse;
 import com.db.crud.course.exception.DuplicateCpfException;
 import com.db.crud.course.exception.ObjectsDontMatchException;
@@ -47,10 +49,19 @@ public class TeacherServiceImpl implements TeacherService {
         if (student == null) {
             student = teacherRepository.findByLastName(info).get();
         }
-        
+
         return TeacherMapper.teacherToDto(student);
     }
-    
+
+    @Override
+    public TeacherAgeResponse getAge(Long teacherId) {
+        Teacher teacher = findTeacher(teacherId);
+
+        Integer age = calcAge(teacher.getBirthDate());
+
+        return TeacherMapper.teacherToAgeDto(teacher, age);
+    }
+
     @Override
     @Transactional
     public TeacherResponse create(TeacherRequest teacherRequestDTO) {
@@ -101,5 +112,11 @@ public class TeacherServiceImpl implements TeacherService {
             throw new DuplicateCpfException("This cpf already is registered. CPF: "+cpf);
         }
         return false;
+    }
+
+    private Integer calcAge(LocalDate birthDate) {
+        LocalDate currentDate = LocalDate.now();
+        Integer age = Period.between(birthDate, currentDate).getYears();
+        return age;
     }
 }
