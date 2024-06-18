@@ -1,4 +1,4 @@
-package com.db.crud.course.fixture;
+package com.db.crud.course.integration;
 
 public class SqlProvider {
     public static final String insertStudent = "/insertStudent.sql";

@@ -15,7 +15,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.db.crud.course.dto.request.TeacherRequest;
-import com.db.crud.course.fixture.SqlProvider;
 import com.db.crud.course.model.Teacher;
 import com.db.crud.course.fixture.TeacherFixture;
 import com.db.crud.course.repository.TeacherRepository;
