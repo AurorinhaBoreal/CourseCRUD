@@ -5,7 +5,13 @@
   
   **docker compose up -d    # Sobe o container do PostgreSQL**
   
-  Após isso pode iniciar o projeto normalmente. 
+  Após isso pode iniciar o projeto normalmente com:
+  
+  **gradle bootRun**
+
+  Caso queiramos executar os testes podemos utilizar:
+
+  **gradle test**
   
   Para visualizar a documentação das requisições, acesse o link do Swagger: http://localhost:8080/swagger-ui/index.html
 
