@@ -37,13 +37,13 @@ public class StudentController {
     }
 
     @GetMapping("/specific/{info}/{searchType}")
-    public ResponseEntity<StudentResponse> specificStudent(@PathVariable String info, @PathVariable String searchType) {
+    public ResponseEntity<StudentResponse> specificStudent(@PathVariable("info") String info, @PathVariable("searchType") String searchType) {
         var body = studentService.specific(info, searchType);
         return ResponseEntity.status(HttpStatus.OK).body(body);
     }
 
     @GetMapping("/age/{enrollmentId}")
-    public ResponseEntity<StudentAgeResponse> getAge(@PathVariable Long enrollmentId) {
+    public ResponseEntity<StudentAgeResponse> getAge(@PathVariable("enrollmentId") Long enrollmentId) {
         var body = studentService.getAge(enrollmentId);
         return ResponseEntity.status(HttpStatus.OK).body(body);
     }
@@ -56,13 +56,13 @@ public class StudentController {
     }
     
     @PutMapping("/update/{enrollmentId}")
-    public ResponseEntity<StudentResponse> update(@PathVariable Long enrollmentId, @RequestBody StudentRequest updateStudent) {
+    public ResponseEntity<StudentResponse> update(@PathVariable("enrollmentId") Long enrollmentId, @RequestBody StudentRequest updateStudent) {
         var body = studentService.update(updateStudent, enrollmentId);
         return ResponseEntity.status(HttpStatus.OK).body(body);
     }
 
     @DeleteMapping("/delete/{enrollmentId}/{cpf}")
-    public ResponseEntity<Void> delete(@PathVariable Long enrollmentId, @PathVariable String cpf) {
+    public ResponseEntity<Void> delete(@PathVariable("enrollmentId") Long enrollmentId, @PathVariable("cpf") String cpf) {
         studentService.delete(enrollmentId, cpf);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

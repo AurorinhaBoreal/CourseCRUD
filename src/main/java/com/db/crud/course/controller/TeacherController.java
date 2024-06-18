@@ -38,13 +38,13 @@ public class TeacherController {
     }
     
     @GetMapping("/specific/{info}/{searchType}")
-    public ResponseEntity<TeacherResponse> specificStudent(@PathVariable String info, @PathVariable String searchType) {
+    public ResponseEntity<TeacherResponse> specificStudent(@PathVariable("info") String info, @PathVariable("searchType") String searchType) {
         var body = teacherService.specific(info, searchType);
         return ResponseEntity.status(HttpStatus.OK).body(body);
     }
 
     @GetMapping("/age/{teacherId}")
-    public ResponseEntity<TeacherAgeResponse> getAge(@PathVariable Long teacherId) {
+    public ResponseEntity<TeacherAgeResponse> getAge(@PathVariable("teacherId") Long teacherId) {
         var body = teacherService.getAge(teacherId);
         return ResponseEntity.status(HttpStatus.OK).body(body);
     }
@@ -56,13 +56,13 @@ public class TeacherController {
     }
     
     @PutMapping("/update/{teacherId}")
-    public ResponseEntity<TeacherResponse> update(@PathVariable Long teacherId, @RequestBody TeacherRequest updateTeacher) {
+    public ResponseEntity<TeacherResponse> update(@RequestBody TeacherRequest updateTeacher, @PathVariable("teacherId") Long teacherId) {
         var body = teacherService.update(updateTeacher, teacherId);
         return ResponseEntity.status(HttpStatus.OK).body(body);
     }
 
     @DeleteMapping("/delete/{teacherId}/{cpf}")
-    public ResponseEntity<Void> delete(@PathVariable Long teacherId, @PathVariable String cpf) {
+    public ResponseEntity<Void> delete(@PathVariable("teacherId") Long teacherId, @PathVariable("cpf") String cpf) {
         teacherService.delete(teacherId, cpf);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

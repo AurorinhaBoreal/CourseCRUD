@@ -41,14 +41,14 @@ public class CourseController {
     }    
 
     @PatchMapping("/enroll/{courseId}/{studentId}")
-    public ResponseEntity<CourseStudentResponse> enrollStudent(@PathVariable Long courseId, @PathVariable Long studentId) {
+    public ResponseEntity<CourseStudentResponse> enrollStudent(@PathVariable("courseId") Long courseId, @PathVariable("studentId") Long studentId) {
         var body = courseService.enroll(courseId, studentId);
         
         return ResponseEntity.status(HttpStatus.OK).body(body);
     }
 
     @PatchMapping("/disenroll/{courseId}/{studentId}")
-    public ResponseEntity<CourseStudentResponse> disenrollStudent(@PathVariable Long courseId, @PathVariable Long studentId) {
+    public ResponseEntity<CourseStudentResponse> disenrollStudent(@PathVariable("courseId") Long courseId, @PathVariable("studentId") Long studentId) {
         var body = courseService.disenroll(courseId, studentId);
         
         return ResponseEntity.status(HttpStatus.OK).body(body);
@@ -61,13 +61,13 @@ public class CourseController {
     }
 
     @PutMapping("/update/{courseId}")
-    public ResponseEntity<CourseResponse> putMethodName(@PathVariable Long courseId, @RequestBody CourseRequest updateCourse) {
+    public ResponseEntity<CourseResponse> putMethodName(@PathVariable("courseId") Long courseId, @RequestBody CourseRequest updateCourse) {
         var body = courseService.update(updateCourse, courseId);
         return ResponseEntity.status(HttpStatus.OK).body(body);
     }
 
     @DeleteMapping("/delete/{courseId}/{courseDuration}")
-    public ResponseEntity<Void> delete(@PathVariable Long courseId, @PathVariable Integer courseDuration) {
+    public ResponseEntity<Void> delete(@PathVariable("courseId") Long courseId, @PathVariable("courseDuration") Integer courseDuration) {
         courseService.delete(courseId, courseDuration);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
